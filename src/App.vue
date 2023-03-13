@@ -13,6 +13,13 @@ export default {
 }
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Alkalami&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alkalami&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alkalami&family=Montserrat:wght@100&family=Sono:wght@100&display=swap');
+:root {
+  --primary-colors: #d9a068;
+  --secondary-colors: #1f2b21;
+}
 /* nav {
   padding: 30px;
 }
