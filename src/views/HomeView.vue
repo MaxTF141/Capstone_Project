@@ -15,12 +15,12 @@
       </div>
   </section>
   <section id="information">
-    <div class="container-fluid">
+    <div class="container-fluid h-100">
       <div class="row">
-        <div class="col-6">
+        <div class="col-md-6 col-12">
           <h2 class="heading text-center pt-5 mt-5">Hello! We easy to use.</h2>
         </div>
-        <div class="infoParagraph col-6 text-white p-5 mt-5">
+        <div class="infoParagraph col-md-6 col-12 text-white p-5 mt-5">
           <p>Welcome to our online booking system for restaurants! With our user-friendly platform, you can easily reserve a table at your favorite restaurant in just a few clicks. No more waiting on hold or struggling to find available tables. Our system makes it easy to secure a spot at the best restaurants in town</p>
           <p>Our system is intuitive and easy to use. Simply pick a restaurant. Select the date, time, and number of people in your party. You can filter by cuisine, price range, and location to find the perfect spot for your next meal.</p>
           <p>Dine along.</p>
@@ -31,11 +31,22 @@
 <section id="moreInformation">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-6">
-
+      <div class="col-md-6 co-12 p-5">
+        <h2 class="headingTwo">Book A Table now</h2>
+        <p class="infoParagraphTwo">Looking for a delicious dinner spot for your evening meal? Our restaurant booking system has a wide range of options available. Here's a sneak peek at some of the types of food you can enjoy for your evening meal:</p>
+        <ul class="list">
+          <li>Classic American dishes, such as steak, grilled chicken, and roasted vegetables, served at a variety of restaurants.</li>
+          <li>International cuisine, including Italian pasta dishes, Indian curries, and Japanese sushi, found at select locations.</li>
+          <li>Seafood specialties, like fresh-caught fish, crab cakes, and lobster, available at certain restaurants.</li>
+          <li>Vegetarian and vegan options, such as veggie burgers, plant-based protein bowls, and tofu stir-fry, served at specific locations.</li>
+          <li>Fine dining options with creative flavor combinations, seasonal ingredients, and artful presentations, available at upscale restaurants.</li>
+        </ul>
+        <div class="buttonR d-flex justify-content-center">
+          <button>View The Restaurants</button>
+        </div>
       </div>
-      <div class="col-6">
-        <img src="" alt="">
+      <div class="bg col-md-6 col-12 p-4">
+        <img class="img-fluid" src="https://i.postimg.cc/Y2XFVw1G/cape-town-restaurants-waterfront-baia.jpg" alt="">
       </div>
     </div>
   </div>
@@ -48,7 +59,7 @@ export default {
 </script>
 <style scoped>
   #home {
-    min-width: 100vw;
+    max-width: 100vw;
     min-height: 100vh;
     position: relative;
     background-color: #1f2b21;
@@ -97,10 +108,11 @@ export default {
     color: #1f2b21;
   }
 
+
   #information {
     position: relative;
     background-color: #d9a068;
-    min-width: 100vw;
+    width: 100vw;
     min-height: 100vh;
     z-index: 1;
   }
@@ -112,5 +124,32 @@ export default {
   .infoParagraph {
     font-size: xx-large;
     font-family: 'Montserrat', sans-serif;
+  }
+
+  
+  #moreInformation {
+    min-height: 100vh;
+  }
+  .headingTwo {
+    font-family: Migra Extrabold;
+    font-size: xx-large;
+    color: #1f2b21;
+  }
+  .infoParagraphTwo, .list {
+    font-family: 'Montserrat', 'sans-serif';
+    font-size: x-large;
+    color: #1f2b21;
+  }
+  li {
+    color: #1f2b21;
+  }
+  .bg img {
+    min-height: 100%;
+    min-width: 100%;
+    /* background: url("https://i.postimg.cc/Y2XFVw1G/cape-town-restaurants-waterfront-baia.jpg") no-repeat; */
+  }
+  .buttonR button {
+    background-color: #d9a068;
+    border-color: #d9a068cb;
   }
 </style>
