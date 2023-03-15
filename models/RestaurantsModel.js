@@ -4,11 +4,12 @@ const sql = require('./Database.js')
 const Restaurants = function(restaurant) {
     this.restaurantName = restaurant.restaurantName;
     this.restaurantDescription = restaurant.restaurantDescription;
-    this.rating = restaurant.rating;
+    this.imgUrl = restaurant.imgUrl;
+    this.galleryImgUrl = restaurant.galleryImgUrl;
+    this.galleryImgUrl2 = restaurant.galleryImgUrl2;
+    this.galleryImgUrl3 = restaurant.galleryImgUrl3;
     this.hoursOfOperation = restaurant.hoursOfOperation;
-    this.bookingDate = restaurant.bookingDate;
-    this.bookingTime = restaurant.bookingTime;
-    this.numberGuests = restaurant.numberGuests;
+    this.location = restaurant.location;
 };
 
 Restaurants.create = (newRestaurant, result) => {
@@ -63,7 +64,7 @@ Restaurants.getAll = (restaurantName, result) => {
 };
 
 Restaurants.updateById = (id, restaurant, result) => {
-    sql.query('UPDATE Restaurants SET restaurantName = ?, restaurantDescription = ?, rating = ?, hoursOfOperation = ?, bookingDate = ?, bookingTime = ?, numberGuests = ? WHERE restId = ?', [restaurant.restaurantName, restaurant.restaurantDescription, restaurant.rating, restaurant.hoursOfOperation, restaurant.bookingDate, restaurant.bookingTime, restaurant.numberGuests, id],
+    sql.query('UPDATE Restaurants SET restaurantName = ?, restaurantDescription = ?, imgUrl = ?, galleryImgUrl = ?, galleryImgUrl2 = ?, galleryImgUrl3 = ?, hoursOfOperation = ?, location = ? WHERE restId = ?', [restaurant.restaurantName, restaurant.restaurantDescription, restaurant.imgUrl, restaurant.galleryImgUrl, restaurant.galleryImgUrl2, restaurant.galleryImgUrl3, restaurant.hoursOfOperation, restaurant.location, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
