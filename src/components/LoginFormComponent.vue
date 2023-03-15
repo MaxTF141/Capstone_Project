@@ -2,17 +2,17 @@
     <div class="container-fluid">
         <div class="row">
             <div class="form col-6 mx-auto d-flex align-items-center">
-                <form class="mx-auto my-auto p-5">
+                <form class="mx-auto my-auto p-5" @submit.prevent="signInCredentials">
                     <!-- Email input -->
                     <h2 class="signInHeader text-center">Sign In</h2>
                     <div class="form-outline mb-2 mx-auto">
-                        <input type="email" id="form2Example1" class="form-control" />
+                        <input type="email" id="form2Example1" class="form-control" required v-model="signIn.userEmail"/>
                         <label class="form-label" for="form2Example1">Email address</label>
                     </div>
             
                     <!-- Password input -->
                     <div class="form-outline mb-2 mx-auto">
-                        <input type="password" id="form2Example2" class="form-control" />
+                        <input type="password" id="form2Example2" class="form-control" required v-model="signIn.userPass"/>
                         <label class="form-label" for="form2Example2">Password</label>
                     </div>
             
@@ -39,8 +39,23 @@
     </div>
 </template>
 <script>
+
 export default {
-    
+    data() {
+        return{
+            signIn: {
+                userEmail: '',
+                userPass: ''
+            }
+        }
+    },
+    methods: {
+        async signInCredentials() {
+            await this.$store.dispatch('loginUser', this.signIn);
+            this.signIn.userEmail = '',
+            this.signIn.userPass = ''
+        }
+    }
 }
 </script>
 <style scoped>

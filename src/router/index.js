@@ -26,6 +26,12 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: () => import('../views/RegisterView.vue')
+  },
+  {
+    path: '/restaurant/:id',
+    name: 'restaurant',
+    component: () => import('../views/SingleRestaurantView.vue'),
+    props: true
   }
 ]
 
