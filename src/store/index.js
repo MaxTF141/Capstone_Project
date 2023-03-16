@@ -33,26 +33,25 @@ export default createStore({
   },
   actions: {
     async loginUser(context, payload) {
-      const res = await axios.post(`${api}users`, payload);
+      const res = await axios.post(`${api}users`, payload, { withCredentials: true });
       const { result, err } = await res.data;
       if(result) {
         context.commit('setUser', result);
-      }
-      else{
+      } else{
         context.commit('setMessage', err);
       }
     },
     async registerUser(context, payload) {
-      const res = await axios.post(`${api}register`, payload)
-      const { msg, err } = await res.data;
-      if (msg) {
-        context.commit('setUser', msg);
+      const res = await axios.post(`${api}register`, payload, { withCredentials: true });
+      const { result, err } = await res.data;
+      if (result) {
+        context.commit('setUser', result);
       } else {
         context.commit('setMessage', err);
       }
     },
     async fetchUsers(context, payload) {
-      const res = await axios.post(`${api}users`, payload);
+      const res = await axios.get(`${api}users`, payload);
       const { msg, err } = await res.data;
       if (msg) {
         context.commit('setUsers', msg);
@@ -75,11 +74,11 @@ export default createStore({
       context.commit('setRestaurants',await res.data)
     },
     async fetchRestaurant(context, id) {
-      const res = await axios.get(`${api}item/${id}`);
+      const res = await axios.get(`${api}items/${id}`, { withCredentials: true });
       console.log(await res.data)
       context.commit('setRestaurant', await res.data)
     }
   },
-  modules: {
+  modules:{
   }
 })

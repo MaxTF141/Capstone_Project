@@ -1,33 +1,33 @@
 <template>
     <div class="container-fluid">
         <div class="row">
-            <div class="form col-6 mx-auto d-flex align-items-center">
+            <div class="form col-6 mx-auto d-flex align-items-center" @submit.prevent="register">
                 <form class="mx-auto my-auto p-5">
                     <h2 class="signInHeader text-center">Register</h2>
                     <div class="row">
                         <div class="col">
                             <div class="form-outline mb-2 mx-auto">
-                                <input type="name" id="form2Example1" class="form-control" required/>
+                                <input type="name" id="form2Example1" class="form-control" required v-model="reg.firstName"/>
                                 <label class="form-label" for="form2Example1">Name</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-outline mb-2 mx-auto">
-                                <input type="surname" id="form2Example2" class="form-control" required/>
+                                <input type="surname" id="form2Example2" class="form-control" required v-model="reg.lastName"/>
                                 <label class="form-label" for="form2Example2">Surname</label>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="form-outline mb-2 mx-auto">
-                                <input type="email" id="form2Example1" class="form-control" required/>
+                            <div class="form-outline mb-2 mx-auto">     
+                                <input type="email" id="form2Example1" class="form-control" required v-model="reg.userEmail"/>
                                 <label class="form-label" for="form2Example1">Email</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-outline mb-2 mx-auto">
-                                <input type="tel" id="form2Example2" class="form-control" required/>
+                                <input type="tel" id="form2Example2" class="form-control" maxlength="12" required v-model="reg.cellphoneNumber"/>
                                 <label class="form-label" for="form2Example2">Mobile Number</label>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                     <div class="row">
                         <div class="col-6">
                             <div class="form-outline mb-2 mx-auto">
-                                <input type="password" id="form2Example1" class="form-control" required/>
+                                <input type="password" id="form2Example1" class="form-control" required v-model="reg.userPass"/>
                                 <label class="form-label" for="form2Example1">Password</label>
                             </div>
                         </div>
@@ -54,7 +54,28 @@
 </template>
 <script>
 export default {
-
+    data() {
+        return {
+            reg: {
+                firstName: '',
+                lastName: '',
+                cellphoneNumber: '',
+                userEmail: '',
+                userPass: '',
+            }
+        }
+    },
+    methods: {
+        async register() {
+            if(this.reg !== null){
+                await this.$store.dispatch('registerUser', this.reg)
+                console.log('Signed in');
+                this.reg = null
+            } else {
+                console.log('error');
+            }
+        }
+    }
 }
 </script>
 <style scoped>

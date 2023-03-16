@@ -9,15 +9,15 @@
           <img src="" alt="logo">
           <ul class="d-flex gap-5">
             <router-link class="nav-link-left" to="/">Home</router-link>
-            <router-link class="nav-link-left" to="restaurants">Restaurants</router-link>
-            <router-link class="nav-link-left" to="about">About Us</router-link>
-            <router-link class="nav-link-left" to="about">Contact Us</router-link>
+            <router-link class="nav-link-left" to="/restaurants">Restaurants</router-link>
+            <router-link class="nav-link-left" to="/about">About Us</router-link>
+            <router-link class="nav-link-left" to="/about">Contact Us</router-link>
           </ul>
           <ul class="d-flex justify-content-end">
             <div class="signInB p me-3 pt-1">
-              <router-link to="signin">Sign In</router-link>
+              <router-link to="/signin">Sign In</router-link>
             </div>
-            <button class="buttonB p-1"><router-link to="signup" class="buttonText">Sign Up</router-link></button>
+            <button class="buttonB p-1"><router-link to="/signup" class="buttonText">Sig  n Up</router-link></button>
           </ul>
         </div>
       </div>

@@ -40,6 +40,7 @@
 </template>
 <script>
 
+
 export default {
     data() {
         return{
@@ -51,10 +52,16 @@ export default {
     },
     methods: {
         async signInCredentials() {
-            await this.$store.dispatch('loginUser', this.signIn);
-            this.signIn.userEmail = '',
-            this.signIn.userPass = ''
-        }
+            if(this.signIn !== null){
+                await this.$store.dispatch('loginUser', this.signIn);
+                console.log('logged in');
+                this.signIn.userEmail = '',
+                this.signIn.userPass = ''
+            } else{
+                console.log('error')
+            }
+
+            }
     }
 }
 </script>
