@@ -4,14 +4,17 @@
     </div>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 export default {
+    // props: ['id'],
+    // data() {
+    //     return {
+    //         userId: this.id,
+    //     }
+    // }
     computed: {
-        user() {
-            console.log(this.$store.state.users)
-            return this.$store.state.users;
-        }
-    }
-
+    ...mapGetters(['loggedInUserId'])
+  }
 }
 </script>
 <style lang="">

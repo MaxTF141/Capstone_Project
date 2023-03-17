@@ -57,7 +57,6 @@ export default {
     data() {
         return {
             reg: {
-                userId: '',
                 firstName: '',
                 lastName: '',
                 cellphoneNumber: '',
@@ -80,12 +79,6 @@ export default {
             return this.$store.state.users;
         }
     },
-    computed: {
-        userId() {
-            console.log(this.$store.state.users)
-            return this.$store.state.users;
-        }
-    }
 
 
 }

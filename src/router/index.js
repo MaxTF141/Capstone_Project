@@ -33,11 +33,12 @@ const routes = [
     component: () => import('../views/SingleRestaurantView.vue'),
     props: true
   },
-  // {
-  //   path: '/profile/:id',
-  //   name: 'profile',
-  //   component: () => import('../views/UserProfileView.vue')
-  // }
+  {
+    path: '/profile/:id',
+    name: 'profile',
+    component: () => import('../views/UserProfileView.vue'),
+    props: true
+  }
 ]
 
 const router = createRouter({

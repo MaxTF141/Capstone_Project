@@ -7,20 +7,22 @@ export default createStore({
   state: {
     user: null,
     users: null,
+    userId: null,
     restaurant: null,
     restaurants: null,
     message: null,
     spinner: true
   },
-  getters: {
-    users: state => state.users
-  },
+
   mutations: {
     setUser(state, user) {
       state.user = user
     },
     setUsers(state, users) {
       state.users = users
+    },
+    setUserId(state, id){
+      state.userId = id
     },
     setRestaurant(state, restaurant) {
       state.restaurant = restaurant
@@ -32,10 +34,16 @@ export default createStore({
       state.message = message
     }
   },
+  getters: {
+    loggedInUserId(state) {
+    return state.userId ? state.userId.userId : null;
+    }
+  },
   actions: {
     async loginUser(context, payload) {
       const res = await axios.post(`${api}users`, payload, { withCredentials: true });
-      const { result, err } = await res.data;
+      const { result, err, userId} = await res.data;
+      context.commit('setUserId', userId)
       if(result) {
         context.commit('setUser', result);
       } else{
@@ -60,10 +68,16 @@ export default createStore({
         context.commit('setUsers', err);
       }
     },
-    // async fetchUser(context, id) {
-    //   const res = await axios.get(`${api}users/${id}`,);
+    // async fetchUser(context) {
+    //   const userId = context.state.loggedInUser;
+    //   const res = await axios.get(`${api}users/${userId}`);
+    //   const {result, err} = await res.data;
     //   console.log(await res.data);
-    //   context.commit('setUser', await res.data);
+    //   if(result) {
+    //     context.commit('setUser', result);
+    //   } else{
+    //     context.commit('setMessage', err);
+    //   }
     // },
     async updateUser(context, payload) {
       const res = await axios.post(`${api}user`, payload);
