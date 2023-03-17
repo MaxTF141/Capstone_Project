@@ -15,6 +15,7 @@ export default {
     props: ['id'],
     computed: {
         restaurant() {
+            console.log(this.$store.state);
             return this.$store.state.restaurant;
         }
     },

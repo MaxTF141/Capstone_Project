@@ -57,6 +57,7 @@ export default {
     data() {
         return {
             reg: {
+                userId: '',
                 firstName: '',
                 lastName: '',
                 cellphoneNumber: '',
@@ -67,15 +68,26 @@ export default {
     },
     methods: {
         async register() {
-            if(this.reg !== null){
-                await this.$store.dispatch('registerUser', this.reg)
-                console.log('Signed in');
-                this.reg = null
-            } else {
-                console.log('error');
-            }
+            await this.$store.dispatch('registerUser', this.reg)
+            this.$store.commit('registerUser', this.userId)
+            console.log('Signed in');
+            this.reg.firstName = '';
+            this.reg.lastName = '';
+            this.reg.cellphoneNumber = '';
+            this.reg.userEmail = '';
+            this.reg.userPass = '';
+            console.log(this.$store.state.users)
+            return this.$store.state.users;
+        }
+    },
+    computed: {
+        userId() {
+            console.log(this.$store.state.users)
+            return this.$store.state.users;
         }
     }
+
+
 }
 </script>
 <style scoped>

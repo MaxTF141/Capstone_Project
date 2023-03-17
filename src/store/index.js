@@ -13,6 +13,7 @@ export default createStore({
     spinner: true
   },
   getters: {
+    users: state => state.users
   },
   mutations: {
     setUser(state, user) {
@@ -44,10 +45,10 @@ export default createStore({
     async registerUser(context, payload) {
       const res = await axios.post(`${api}register`, payload, { withCredentials: true });
       const { result, err } = await res.data;
-      if (result) {
-        context.commit('setUser', result);
+        if(err) {
+          context.commit('setMessage', err);
       } else {
-        context.commit('setMessage', err);
+        context.commit('setUser', result);
       }
     },
     async fetchUsers(context, payload) {
@@ -59,6 +60,11 @@ export default createStore({
         context.commit('setUsers', err);
       }
     },
+    // async fetchUser(context, id) {
+    //   const res = await axios.get(`${api}users/${id}`,);
+    //   console.log(await res.data);
+    //   context.commit('setUser', await res.data);
+    // },
     async updateUser(context, payload) {
       const res = await axios.post(`${api}user`, payload);
       const { msg, err } = await res.data;

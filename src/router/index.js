@@ -32,7 +32,12 @@ const routes = [
     name: 'restaurant',
     component: () => import('../views/SingleRestaurantView.vue'),
     props: true
-  }
+  },
+  // {
+  //   path: '/profile/:id',
+  //   name: 'profile',
+  //   component: () => import('../views/UserProfileView.vue')
+  // }
 ]
 
 const router = createRouter({

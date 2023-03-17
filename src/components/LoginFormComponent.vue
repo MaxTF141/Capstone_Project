@@ -62,7 +62,19 @@ export default {
             }
 
             }
-    }
+    },
+    computed: {
+        userID() {
+            if(this.$store.user == null) {
+                return console.log(this.$store.state.user)
+            } else return this.$store.state.user;
+
+        }
+    },
+    // mounted() {
+    //     this.$store.dispatch('fetchId', )
+    // }
+
 }
 </script>
 <style scoped>

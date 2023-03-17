@@ -1,6 +1,6 @@
 <template lang="">
   <section id="nav-bar" class="">
-    <nav class="navbar navbar-expand-lg fixed-top mx-auto">
+    <nav class="navbar navbar-expand-lg  fixed-top mx-auto">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -15,9 +15,12 @@
           </ul>
           <ul class="d-flex justify-content-end">
             <div class="signInB p me-3 pt-1">
-              <router-link to="/signin">Sign In</router-link>
+              <router-link v-if="$route.path !== '/signin'" to="/signin">Sign In</router-link>
             </div>
-            <button class="buttonB p-1"><router-link to="/signup" class="buttonText">Sig  n Up</router-link></button>
+            <button class="buttonB p-1" v-if="$route.path !== '/signup'"><router-link to="/signup" class="buttonText">Sign Up</router-link></button>
+            <div class="profile" v-if="user">
+              <router-link><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA70lEQVR4nO3UQUrDQBSH8R8umqVdWrrWK+hJxEPYHsNuRPFAurR1ZfEAuinVlUUUXVYGJiCCdNJObCn54A8heeGbl8wbGjaUAn2M8BETrnvxWS10Mcb8j9zHmqwUC6Q/5Vk77ydIy5zmFN9VEA9zit8riENtNuYVs5aO37biH/fWtauLOKMpc9ySme4CeS0nV0krfsph3HAht/Fe9k4b/pUdHGGAGzzjK2aKa5zhMNauTAcXeKkwx2FR59hbRtjGFT6XOKfLhHcvsZsqPcDTCsLfecR+ivgho7TMOEU8rUE8SRGfYJZR+orjFHHDdvENyZP0ibBvoI8AAAAASUVORK5CYII="></router-link>
+            </div>
           </ul>
         </div>
       </div>
@@ -27,7 +30,14 @@
 </template>
 <script>
 export default {
-
+  // computed: {
+    // user() {
+    //   return this.$store.state.user;
+    // }
+  // },
+  // mounted() {
+  //   this.$store.dispatch('fetchUser', this.id);
+  // }
 }
 </script>
 <style>
