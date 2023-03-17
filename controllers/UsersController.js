@@ -37,7 +37,7 @@ exports.create = async (req, res) => {
       const jwt = createToken(user);
       res.cookie('authorization_token', jwt, {
         maxAge: 3600000,
-        httpOnly: false,
+        httpOnly: true,
         path: '/',
       });
       res.status(200).json({ message: "A user record was saved." })
