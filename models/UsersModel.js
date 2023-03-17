@@ -25,7 +25,7 @@ Users.create = (newUser, result) => {
 };
 
 Users.login = (user , result) => {
-  sql.query('SELECT firstName, lastName, cellphoneNumber, userEmail, userPass, userRole, userProfile FROM Users WHERE userEmail = ?', [user.userEmail], async (err, res) => {
+  sql.query('SELECT userId, firstName, lastName, cellphoneNumber, userEmail, userPass, userRole, userProfile FROM Users WHERE userEmail = ?', [user.userEmail], async (err, res) => {
     if(err) {
       console.log('error:', err)
       result(err, null)
@@ -37,7 +37,7 @@ Users.login = (user , result) => {
 }
 
 Users.findById = (id, result) => {
-  sql.query(`SELECT * FROM Users WHERE userID = ${id}`, (err, res) => {
+  sql.query(`SELECT * FROM Users WHERE userId = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -75,7 +75,7 @@ Users.getAll = (firstName, result) => {
 };
 
 Users.updateById = (id, user, result) => {
-    sql.query('UPDATE Users SET firstName = ?, lastName = ?, cellphoneNumber = ?, userEmail = ?, userPass = ?, userRole = ?, userProfile = ?, = ? WHERE userID = ?', [user.firstName, user.lastName, user.cellphoneNumber, user.userEmail, user.userPass, user.userRole, user.userProfile, id],
+    sql.query('UPDATE Users SET firstName = ?, lastName = ?, cellphoneNumber = ?, userEmail = ?, userPass = ?, userRole = ?, userProfile = ?, = ? WHERE userId = ?', [user.firstName, user.lastName, user.cellphoneNumber, user.userEmail, user.userPass, user.userRole, user.userProfile, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -96,7 +96,7 @@ Users.updateById = (id, user, result) => {
 };
 
 Users.remove = (id, result) => {
-  sql.query("DELETE FROM Users WHERE userID = ?", id, (err, res) => {
+  sql.query("DELETE FROM Users WHERE userId = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

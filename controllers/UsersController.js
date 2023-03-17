@@ -69,10 +69,13 @@ exports.loginUser = async (req, res) => {
             path: '/',
           })
           if (cResult) {
+            const userData = data[0];
+            const userId = userData.userId
             res.status(200).json({
               message: 'Logged in',
               jwt,
-              result: data[0]
+              result: userData , 
+              userId
             })
           } else {
             res.status(401).json({
