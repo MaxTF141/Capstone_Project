@@ -2,7 +2,7 @@ const User = require("../models/UsersModel.js");
 
 const { hash, compare, hashSync } = require('bcrypt');
 
-const {createToken} = require('../middleware/AuthenticatedUser');
+const { createToken } = require('../middleware/AuthenticatedUser');
 
 // Create and Save a new User
 exports.create = async (req, res) => {
@@ -46,7 +46,7 @@ exports.create = async (req, res) => {
 };
 
 exports.loginUser = async (req, res) => {
-  const {emailAdd, userPass} = req.body;
+  const { emailAdd, userPass } = req.body;
   User.login(req.body, async (err, data) => {
     if (err) throw err;
     if ((!data.length) || (data == null)) {
@@ -55,12 +55,12 @@ exports.loginUser = async (req, res) => {
           "You provide a wrong email address"
       });
     } else {
-       await compare(userPass,
+      await compare(userPass,
         data[0].userPass,
         (cErr, cResult) => {
           if (cErr) throw cErr;
           // Create a token
-          const jwt = createToken({emailAdd, userPass});
+          const jwt = createToken({ emailAdd, userPass });
           // Saving
           res.cookie('authorization_token',
             jwt, {
@@ -74,7 +74,7 @@ exports.loginUser = async (req, res) => {
             res.status(200).json({
               message: 'Logged in',
               jwt,
-              result: userData , 
+              result: userData,
               userId
             })
           } else {
@@ -91,7 +91,7 @@ exports.signOut = async (req, res) => {
   return res
     .clearCookie("authorization_token")
     .status(200)
-    .json({ message: "Successfully logged out. Come again soon."});
+    .json({ message: "Successfully logged out. Come again soon." });
 }
 
 // Retrieve all User from the database (with condition).
@@ -129,26 +129,26 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
   let data = req.body;
   // Validate Request
-  if(data.userPass !== null || data.userPass !== undefined){
+  if (data.userPass !== null || data.userPass !== undefined) {
     data.userPass = hashSync(data.userPass, 15);
   } console.log(req.body);
-  
+
   User.updateById(req.params.id, new User(req.body), (err, data) => {
-      if (err) {
-        if (err.kind === "not_found") {
-          res.status(404).send({
-            message: `Not found User with userId ${req.params.id}.`
-          });
-        } else {
-          res.status(500).send({
-            message: "Error updating User with userId " + req.params.id
-          });
-        }
-      } else{
-          res.send(data);
-          console.log(`Update user with userId ${req.params.id}`)
-        }
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found User with userId ${req.params.id}.`
+        });
+      } else {
+        res.status(500).send({
+          message: "Error updating User with userId " + req.params.id
+        });
+      }
+    } else {
+      res.send(data);
+      console.log(`Update user with userId ${req.params.id}`)
     }
+  }
   );
 };
 
