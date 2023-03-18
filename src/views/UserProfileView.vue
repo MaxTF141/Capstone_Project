@@ -1,20 +1,22 @@
 <template lang="">
     <div v-if="user">     
-        <h1>{{user.userId}}</h1>
+        <h1 class="pb-5 mb-5">{{user.userId}}</h1>
     </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+
 export default {
-    // props: ['id'],
-    // data() {
-    //     return {
-    //         userId: this.id,
-    //     }
-    // }
-    computed: {
-    ...mapGetters(['loggedInUserId'])
-  }
+    props: ['id'],
+    computed:{
+        user(){
+            console.log(this.$store.state.user)
+            return this.$store.state.user
+        }
+    },
+    mutations() {
+        this.$store.dispatch('fetchUser', this.id);
+        console.log(this.id);
+    }
 }
 </script>
 <style lang="">

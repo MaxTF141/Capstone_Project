@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 
 const api = 'http://localhost:2222/'
 
@@ -7,7 +8,7 @@ export default createStore({
   state: {
     user: null,
     users: null,
-    userId: null,
+    // userId: null,
     restaurant: null,
     restaurants: null,
     message: null,
@@ -21,9 +22,9 @@ export default createStore({
     setUsers(state, users) {
       state.users = users
     },
-    setUserId(state, id){
-      state.userId = id
-    },
+    // setUserId(state, userId){
+    //   state.userId = userId
+    // },
     setRestaurant(state, restaurant) {
       state.restaurant = restaurant
     },
@@ -42,13 +43,16 @@ export default createStore({
   actions: {
     async loginUser(context, payload) {
       const res = await axios.post(`${api}users`, payload, { withCredentials: true });
-      const { result, err, userId} = await res.data;
-      context.commit('setUserId', userId)
-      if(result) {
+      const { result, err} = await res.data;
+      if(result){
+        // context.commit('setUserId', result.userId)
         context.commit('setUser', result);
-      } else{
+        Cookies.set('userId', result.userId, {expires: 1, path: '/'})
+        console.log(result.userId)
+      } else {
         context.commit('setMessage', err);
       }
+ 
     },
     async registerUser(context, payload) {
       const res = await axios.post(`${api}register`, payload, { withCredentials: true });
@@ -68,17 +72,16 @@ export default createStore({
         context.commit('setUsers', err);
       }
     },
-    // async fetchUser(context) {
-    //   const userId = context.state.loggedInUser;
-    //   const res = await axios.get(`${api}users/${userId}`);
-    //   const {result, err} = await res.data;
-    //   console.log(await res.data);
-    //   if(result) {
-    //     context.commit('setUser', result);
-    //   } else{
-    //     context.commit('setMessage', err);
-    //   }
-    // },
+    async fetchUser(context, userId) {
+      const res = await axios.get(`${api}users/${userId}`);
+      const {message} = await res.data;
+      console.log(await res.data);
+      if(message) {
+        context.commit('setMessage', message);
+      } else{
+        context.commit('setUser', await res.data);
+      }
+    },
     async updateUser(context, payload) {
       const res = await axios.post(`${api}user`, payload);
       const { msg, err } = await res.data;

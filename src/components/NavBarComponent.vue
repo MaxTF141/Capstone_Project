@@ -14,12 +14,14 @@
             <router-link class="nav-link-left" to="/about">Contact Us</router-link>
           </ul>
           <ul class="d-flex justify-content-end">
-            <div class="signInB p me-3 pt-1">
-              <router-link v-if="$route.path !== '/signin'" to="/signin">Sign In</router-link>
+            <div class="sign" v-if="!user">
+              <div class="signInB p me-3 pt-1">
+                <router-link v-if="$route.path !== '/signin'" to="/signin">Sign In</router-link>
+              </div>
+              <button class="buttonB p-1" v-if="$route.path !== '/signup'"><router-link to="/signup" class="buttonText">Sign Up</router-link></button>
             </div>
-            <button class="buttonB p-1" v-if="$route.path !== '/signup'"><router-link to="/signup" class="buttonText">Sign Up</router-link></button>
-            <div class="profile">
-              <router-link :to="{name: 'profile', params:{id: $store.state.userId.userId }}"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA70lEQVR4nO3UQUrDQBSH8R8umqVdWrrWK+hJxEPYHsNuRPFAurR1ZfEAuinVlUUUXVYGJiCCdNJObCn54A8heeGbl8wbGjaUAn2M8BETrnvxWS10Mcb8j9zHmqwUC6Q/5Vk77ydIy5zmFN9VEA9zit8riENtNuYVs5aO37biH/fWtauLOKMpc9ySme4CeS0nV0krfsph3HAht/Fe9k4b/pUdHGGAGzzjK2aKa5zhMNauTAcXeKkwx2FR59hbRtjGFT6XOKfLhHcvsZsqPcDTCsLfecR+ivgho7TMOEU8rUE8SRGfYJZR+orjFHHDdvENyZP0ibBvoI8AAAAASUVORK5CYII="></router-link>
+            <div class="profile" v-if="user">
+              <router-link :to="`profile/${user.userId}`"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA70lEQVR4nO3UQUrDQBSH8R8umqVdWrrWK+hJxEPYHsNuRPFAurR1ZfEAuinVlUUUXVYGJiCCdNJObCn54A8heeGbl8wbGjaUAn2M8BETrnvxWS10Mcb8j9zHmqwUC6Q/5Vk77ydIy5zmFN9VEA9zit8riENtNuYVs5aO37biH/fWtauLOKMpc9ySme4CeS0nV0krfsph3HAht/Fe9k4b/pUdHGGAGzzjK2aKa5zhMNauTAcXeKkwx2FR59hbRtjGFT6XOKfLhHcvsZsqPcDTCsLfecR+ivgho7TMOEU8rUE8SRGfYJZR+orjFHHDdvENyZP0ibBvoI8AAAAASUVORK5CYII="></router-link>
             </div>
           </ul>
         </div>
@@ -36,9 +38,20 @@ export default {
   computed: {
     cookieExists() {
       return !!Cookies.get('authorization_token');
+    },
+    user() {
+      console.log(this.$store.state.user)
+      return this.$store.state.user
     }
-  }
-}
+  },
+  mounted(){
+    const userId = Cookies.get('userId')
+      if(userId) {
+        this.$store.dispatch('fetchUser', userId);
+        console.log(userId)
+      }
+    }
+    }
 </script>
 <style>
 .navbar {

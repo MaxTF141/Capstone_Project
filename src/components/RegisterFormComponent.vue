@@ -48,6 +48,9 @@
                         <p>Already have an account? <router-link to="signin">Register</router-link></p>
                     </div>
                 </form>
+                <div class="container" v-if="idUsers">
+                    <h1>{{idUsers}}</h1>
+                </div>
             </div>
         </div>
     </div>
@@ -79,6 +82,16 @@ export default {
             return this.$store.state.users;
         }
     },
+    computed: {
+        idUsers() {
+            console.log(this.$store.state.userId);
+            return this.$store.state.userId;
+        }
+    },
+    mounted(){
+        this.$store.dispatch('loginUser');
+    }
+
 
 
 }
