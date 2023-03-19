@@ -12,6 +12,7 @@ export default createStore({
     restaurant: null,
     restaurants: null,
     message: null,
+    cart: null,
     spinner: true
   },
 
@@ -33,13 +34,12 @@ export default createStore({
     },
     setMessage(state, message) {
       state.message = message
+    },
+    setCart(state, item) {
+      state.cart = item
     }
   },
-  getters: {
-    loggedInUserId(state) {
-    return state.userId ? state.userId.userId : null;
-    }
-  },
+
   actions: {
     async loginUser(context, payload) {
       const res = await axios.post(`${api}users`, payload, { withCredentials: true });
@@ -100,6 +100,25 @@ export default createStore({
       const res = await axios.get(`${api}items/${id}`, { withCredentials: true });
       console.log(await res.data)
       context.commit('setRestaurant', await res.data)
+    },
+    async fetchCart(context, id) {
+      console.log(id)
+      const res = await axios.get(`${api}user/${id}/carts`);
+      context.commit('setCart', await res.data[0]);
+      // if(res) {
+      // }else {
+      //   context.commit('setMessage', message)
+      // }
+    },
+    async addToCart(context, {id, payload}) {
+      console.log(payload);
+      console.log(id);
+      const {message, res} = await axios.post(`${api}user/${id}/cart`, payload);
+      if(res){
+        context.commit('setCart', await res.data);
+      } else {
+        context.commit('setMessage', message)
+      }
     }
   },
   modules:{

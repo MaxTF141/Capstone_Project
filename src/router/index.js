@@ -38,6 +38,12 @@ const routes = [
     name: 'profile',
     component: () => import('../views/UserProfileView.vue'),
     props: true
+  },
+  {
+    path: '/user/:id/cart',
+    name: 'cart',
+    component: () => import('../views/CartView.vue'),
+    props: true
   }
 ]
 
