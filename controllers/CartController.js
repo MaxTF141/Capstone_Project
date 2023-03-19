@@ -10,20 +10,29 @@ exports.create = (req, res) => {
 
     // Add a Cart
     const cart = new Cart({
+        bookingDate: req.body.bookingDate,
+        bookingTime: req.body.bookingTime,
+        numberGuests: req.body.numberGuests,
         userId: req.body.userId,
         restId: req.body.restId,
-        bookingId: req.body.bookingId,
-        quantity: req.body.quantity
     });
 
     // Save Cart in the database
     Cart.create(cart, (err, data) => {
-        if (err)
+        if (err){
             res.status(500).json({
                 message:
                     err.message || "Some error occurred while adding to the cart."
             });
-        else res.send(data);
+        } else{
+            const userData = data[0];
+            const date =  data.bookingDate
+            res.status(200).json({
+                userData,
+                message: 'added to cart successfully',
+                date
+            });
+        }
     });
 };
 

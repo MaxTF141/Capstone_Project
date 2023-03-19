@@ -2,37 +2,28 @@
 const sql = require('./Database.js')
 
 const Bookings = function(booking) {
-    this.bookingTime = booking.bookingTime;
+    // this.cartId = booking.cartId;
     this.bookingDate = booking.bookingDate;
+    this.bookingTime = booking.bookingTime;
     this.numberGuests = booking.numberGuests;
     this.userId = booking.userId;
     this.restId = booking.restId;
-    this.bookingId = booking.bookingId;
-    this.quantity = booking.quantity;
 };
 
-Bookings.create = async (booking, result) => {
-  await sql.query("INSERT INTO Cart (userId, restId, bookingId, quantity) values(?, ?, ?, ?)", [booking.userId, booking.restId, booking.bookingId, booking.quantity], (err, res) => {
+Bookings.create = (booking, result) => {
+  sql.query("INSERT INTO Cart (bookingDate, bookingTime, numberGuests, userId, restId) VALUES(?, ?, ?, ?, ?)", [booking.bookingDate, booking.bookingTime, booking.numberGuests, booking.userId, booking.restId], (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
+    result(null, res)
     console.log("created cart");
-    result(null, res)
   });
-  sql.query(`INSERT INTO Bookings (bookingDate, bookingTime, numberGuests, userId, restId) VALUES (?, ?, ?, ?, ?)`, [booking.bookingDate, booking.bookingTime, booking.numberGuests, booking.userId, booking.restId], (err, res) => {
-    if(err) {
-      console.log(err);
-      result(err, null);
-    }
-    console.log("Created a booking")
-    result(null, res)
-  })
 };
 
 Bookings.getAll = (id, result) => {
-  sql.query('SELECT u.userId, r.restaurantName, r.restaurantDescription, r.location, b.bookingDate, b.bookingTime, b.numberGuests, c.quantity FROM Cart c INNER JOIN Restaurants r ON c.restId = r.restId INNER JOIN Users u ON c.userId = u.userId INNER JOIN Bookings b ON c.restId = b.restId WHERE u.userId = ?;', [id] ,(err, res) => {
+  sql.query('SELECT u.userId, r.restaurantName, r.restaurantDescription, r.location, c.bookingDate, c.bookingTime, c.numberGuests FROM Cart c INNER JOIN Restaurants r ON c.restId = r.restId INNER JOIN Users u ON c.userId = u.userId WHERE u.userId = ?;', [id] ,(err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
