@@ -43,7 +43,8 @@ module.exports = app => {
   
     router.delete("/user/:id/cart/:id", cart.delete);
 
-    router.delete("/user/:id/cart", cart.deleteAll);
+    router.delete("/user/:id/cart/", cart.deleteAll);
+
 
     app.use('/', router);
   };

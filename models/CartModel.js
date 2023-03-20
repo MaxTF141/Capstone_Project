@@ -23,7 +23,7 @@ Bookings.create = (booking, result) => {
 };
 
 Bookings.getAll = (id, result) => {
-  sql.query('SELECT u.userId, r.restaurantName, r.restaurantDescription, r.location, c.bookingDate, c.bookingTime, c.numberGuests FROM Cart c INNER JOIN Restaurants r ON c.restId = r.restId INNER JOIN Users u ON c.userId = u.userId WHERE u.userId = ?;', [id] ,(err, res) => {
+  sql.query('SELECT c.cartId, u.userId, r.restaurantName, r.restaurantDescription, r.location, c.bookingDate, c.bookingTime, c.numberGuests FROM Cart c INNER JOIN Restaurants r ON c.restId = r.restId INNER JOIN Users u ON c.userId = u.userId WHERE u.userId = ?;', [id] ,(err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -36,7 +36,7 @@ Bookings.getAll = (id, result) => {
 };
 
 Bookings.updateById = (id, booking, result) => {
-    sql.query('UPDATE Booking SET bookingTime = ?, bookingDate = ?, numberGuests = ? WHERE bookingId = ?', [booking.bookingTime,booking.bookingDate, booking.numberGuests, booking. id],
+    sql.query('UPDATE Cart SET bookingDate = ?, bookingTime = ?, numberGuests = ? WHERE cartId = ?', [booking.bookingDate, booking.bookingTime, booking.numberGuests, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -50,8 +50,8 @@ Bookings.updateById = (id, booking, result) => {
         return;
       }
 
-      console.log("updated cart: ", { id: id, ...cart });
-      result(null, { id: id, ...cart });
+      console.log("updated cart: ", { id: id });
+      result(null, { id: id });
     }
   );
 };
@@ -74,7 +74,7 @@ Bookings.remove = (id, result) => {
   });
 };
 
-Bookings.removeAll = (result) => {
+Bookings.removeAll = (id, result) => {
   sql.query('TRUNCATE TABLE Cart', (err, res) => {
     if(err) {
       console.log(err);

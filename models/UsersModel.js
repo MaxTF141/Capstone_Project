@@ -75,7 +75,7 @@ Users.getAll = (firstName, result) => {
 };
 
 Users.updateById = (id, user, result) => {
-    sql.query('UPDATE Users SET firstName = ?, lastName = ?, cellphoneNumber = ?, userEmail = ?, userPass = ?, userRole = ?, userProfile = ?, = ? WHERE userId = ?', [user.firstName, user.lastName, user.cellphoneNumber, user.userEmail, user.userPass, user.userRole, user.userProfile, id],
+    sql.query('UPDATE Users SET firstName = ?, lastName = ?, cellphoneNumber = ?, userEmail = ?, userPass = ?, userRole = ?, userProfile = ? WHERE userId = ?', [user.firstName, user.lastName, user.cellphoneNumber, user.userEmail, user.userPass, user.userRole, user.userProfile, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

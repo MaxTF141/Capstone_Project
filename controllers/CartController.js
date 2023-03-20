@@ -60,8 +60,7 @@ exports.update = (req, res) => {
     }
     console.log(req.body);
 
-    Cart.updateById(
-        req.params.id , new Cart(req.body),(err, data) => {
+    Cart.updateById( req.params.id , new Cart(req.body),(err, data) => {
             if (err) {
                 if (err.kind === "not_found") {
                     res.status(404).send({
@@ -90,7 +89,7 @@ exports.delete = (req, res) => {
                     message: "Could not delete Cart with id " + req.params.id
                 });
             }
-        } else res.send({ message: `Restaurant was deleted successfully!` });
+        } else res.send({ message: `Restaurant was deleted successfully from Cart!` });
     });
 
 };

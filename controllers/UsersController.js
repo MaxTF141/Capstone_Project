@@ -37,7 +37,7 @@ exports.create = async (req, res) => {
       const jwt = createToken(user);
       res.cookie('authorization_token', jwt, {
         maxAge: 3600000,
-        httpOnly: true,
+        httpOnly: false,
         path: '/',
       });
       res.status(200).json({ message: "A user record was saved." })
@@ -65,17 +65,19 @@ exports.loginUser = async (req, res) => {
           res.cookie('authorization_token',
             jwt, {
             maxAge: 3600000,
-            httpOnly: true,
+            httpOnly: false,
             path: '/',
           })
           if (cResult) {
             const userData = data[0];
             const userId = userData.userId
+            const userRole = userData.userRole
             res.status(200).json({
               message: 'Logged in',
               jwt,
               result: userData,
-              userId
+              userId,
+              userRole
             })
           } else {
             res.status(401).json({
@@ -104,7 +106,7 @@ exports.findAll = (req, res) => {
         message:
           err.message || "Some error occurred while retrieving tutorials."
       });
-    else res.send(data);
+    else res.send({data});
   });
 };
 
