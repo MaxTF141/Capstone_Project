@@ -30,7 +30,7 @@
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li><router-link :to="`/profile/${user.userId}`" class="dropdown-item" >See your Profile</router-link></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                  <li><a class="dropdown-item" href="#" @click="signOut">Sign Out</a></li>
                 </ul>
               </div>
             </div>
@@ -51,7 +51,6 @@ export default {
       return !!Cookies.get('authorization_token');
     },
     user() {
-      console.log(this.$store.state.user)
       return this.$store.state.user
     }
   },
@@ -59,7 +58,22 @@ export default {
     const userId = Cookies.get('userId')
       if(userId) {
         this.$store.dispatch('fetchUser', userId);
-        console.log(userId)
+      }
+    },
+    methods: {
+      async signOut() {
+        // this.$router.push('/signin')
+        
+        const userCookie = Cookies.get('userId', { path: '/'})
+        if(userCookie) {
+          Cookies.remove('authorization_token', { path: '/'})
+          Cookies.remove('userId', { path: '/' })
+          console.log('Cookie has been removed')
+          console.log('Cookie has been removed')
+          await this.$router.push('/signin')
+          
+        }
+        location.reload()
       }
     }
 }

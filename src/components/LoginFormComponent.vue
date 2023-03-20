@@ -13,6 +13,7 @@
                     <!-- Password input -->
                     <div class="form-outline mb-2 mx-auto">
                         <input type="password" id="form2Example2" class="form-control" required v-model="signIn.userPass"/>
+                        <i :class="{ icon }" @click="toggleIcon" id="togglePassword"></i>
                         <label class="form-label" for="form2Example2">Password</label>
                     </div>
             
@@ -47,9 +48,16 @@ export default {
             signIn: {
                 userEmail: '',
                 userPass: ''
-            }
+            },
+            showPassword: false
         }
     },
+    computed: {
+        icon() {
+            return this.showPassword ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash';
+        }
+    },
+
     methods: {
         async signInCredentials() {
             if(this.signIn !== null){
@@ -60,8 +68,11 @@ export default {
             } else{
                 console.log('error')
             }
-
-            }
+            this.$router.push('/restaurants');
+        },
+        toggleIcon(){
+            this.showPassword = !this.showPassword;
+        }
     },
     
 
@@ -97,4 +108,16 @@ export default {
         color: #1f2b21;
         font-family: TeX Gyre Bonum;
     }
+
+    .form-outline {
+        position: relative;
+    }
+    .form-outline i {
+        position: absolute ;
+        top: 0;
+        right: 0;
+        margin-right: 10px;
+        margin-top: 12px;
+
+    }   
 </style>
