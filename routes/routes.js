@@ -19,7 +19,7 @@ module.exports = app => {
     router.delete("/users/:id", user.delete);
 
     // logout 
-    router.get('/signOut', verifyAToken, user.signOut);
+    router.post('/logout', verifyAToken, user.signOut);
   
     // items routes
     const restaurant = require('../controllers/RestaurantsController.js');

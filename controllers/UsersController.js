@@ -91,7 +91,12 @@ exports.loginUser = async (req, res) => {
   })
 };
 
- 
+exports.signOut = async (req, res) => {
+  return res
+    .clearCookie("authorization_token")
+    .status(200)
+    .json({ message: "Successfully logged out. Come again soon." });
+}
 
 // Retrieve all User from the database (with condition).
 exports.findAll = (req, res) => {
