@@ -2,12 +2,13 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-const api = 'http://localhost:2222/'
+const api = 'https://bookingsecure.onrender.com/'
 
 export default createStore({
   state: {
     user: null,
     users: null,
+    isAuthenticated: false,
     restaurant: null,
     restaurants: null,
     message: null,
@@ -22,6 +23,9 @@ export default createStore({
     setUsers(state, users) {
       state.users = users
     },
+    setAuthentication(state, isAuthenticated) {
+    state.isAuthenticated = isAuthenticated
+      },
     setRestaurant(state, restaurant) {
       state.restaurant = restaurant
     },
@@ -49,6 +53,12 @@ export default createStore({
         context.commit('setMessage', err);
       }
  
+    },
+// SIGN OUT A USER
+    async signOut(context) {
+      await axios.post(`${api}logout`, false);
+      context.commit('isAuthenticated', false)
+      context.commit('setUser', null);
     },
 // REGISTER USER ACTION    
     async registerUser(context, payload) {
