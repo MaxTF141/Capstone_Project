@@ -1,8 +1,9 @@
 <template>
     <div class="container-fluid pt-5">
         <div class="row">
-            <div class="col-12">
-                <table class="table table-dark table-borderless">
+            <div class="col-md-12">
+                <h2 class="text-white">Users</h2>
+                <table class="table table-dark table-borderless mx-auto">
                     <thead>
                         <tr>
                         <th scope="col">#</th>
@@ -11,28 +12,26 @@
                         <th scope="col">Email Address</th>
                         <th scope="col">Phone Number</th>
                         <th scope="col">Role</th>
-                        <th scope="col">Role</th>
+                        <th scope="col" class="text-center">Edit User</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="user in users" :key="user.userId">
+                        <tr v-for="user in users" :key="user.userId" class="bg-dark">
                             <th scope="row">{{ user.userId }}</th>
                             <td>{{ user.firstName}}</td>
                             <td>{{ user.lastName }}</td>
                             <td>{{ user.userEmail }}</td>
                             <td>{{ user.cellphoneNumber }}</td>
                             <td>{{ user.userRole }}</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#editModal' + user.userId">
-                                Edit User
-                                </button>
+                            <td class="d-flex justify-content-center gap-3">
+                                <i class="fa-solid fa-pen-to-square"  data-bs-toggle="modal" :data-bs-target="'#editModal1' + user.userId"></i>
 
                                 <!-- Modal -->
-                                <div class="modal fade" :id="'editModal' + user.userId" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" :aria-labelledby="'editModalLabel' + user.userId" aria-hidden="true">
+                                <div class="modal fade" :id="'editModal1' + user.userId" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" :aria-labelledby="'editModalLabel1' + user.userId" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                         <div class="modal-header">
-                                            <h1 class="modal-title fs-5" :id="'editModalLabel' + user.userId">Modal title</h1>
+                                            <h1 class="modal-title fs-5" :id="'editModalLabel1' + user.userId">Modal title</h1>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -80,7 +79,130 @@
                                         </div>
                                     </div>
                                 </div>
-                        
+                                <i class="fa-sharp fa-solid fa-trash" @click="deleteUser(user)"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-white">Restaurants</h2>
+                <table class="table table-dark table-borderless table-responsive mx-auto">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Restaurant Main Image</th>
+                        <th scope="col">Restaurant Name</th>
+                        <th scope="col">Description</th>
+                        <!-- <th scope="col">Location</th> -->
+                        <th scope="col">Address</th>
+                        <!-- <th scope="col">Gallery Image #1</th> -->
+                        <!-- <th scope="col">Gallery Image #2</th> -->
+                        <!-- <th scope="col">Gallery Image #3</th>   -->
+                        <th scope="col" class="text-center">Hours of Operation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="res in restaurants" :key="res.restId" class="bg-dark">
+                            <th scope="row">{{ res.restId }}</th>
+                            <td><img :src="res.imgUrl" alt=""> </td>
+                            <td>{{ res.restaurantName }}</td>
+                            <td>{{ res.restaurantDescription }}</td>
+                            <!-- <td>{{ res.location }}</td> -->
+                            <td>{{ res.address }}</td>
+                            <!-- <td>{{ res.galleryImgUrl }}</td>
+                            <td>{{ res.galleryImgUr2 }}</td>
+                            <td>{{ res.galleryImgUr3 }}</td>
+                            <td>{{ res.hoursOfOperation }}</td> -->
+                            <td class="d-flex justify-content-center gap-5">
+                                <i class="fa-solid fa-pen-to-square"  data-bs-toggle="modal" :data-bs-target="'#editModal' + res.restId"></i>
+
+                                <!-- Modal -->
+                                <div class="modal fade" :id="'editModal' + res.restId" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" :aria-labelledby="'editModalLabel' + res.restId" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" :id="'editModalLabel' + res.restId">Modal title</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!--            -->
+                                            <form @submit.prevent="updateRestaurant(res)">
+                                                <div class="mb-3 row">
+                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Restaurant Name</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text"  class="form-control" v-model="res.restaurantName">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="message" class="col-sm-4 col-form-label text-dark">Description</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="message" class="form-control" v-model="res.restaurantDescription">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Location</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" v-model="res.location">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="tel" class="col-sm-4 col-form-label text-dark">Address</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="tel" class="form-control" v-model="res.address">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Restaurant Main Image</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" v-model="res.imgUrl">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Gallery Image #1</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" v-model="res.galleryImgUrl">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Gallery Image #2</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" v-model="res.galleryImgUrl2">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Gallery Image #3</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" v-model="res.galleryImgUrl3">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Hours of Operation</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" v-model="res.hoursOfOperation.Monday.open">
+                                                    </div>
+                                                <!-- </div>
+                                                <div class="mb-3 row">
+                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Hours of Operation</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" v-model="res.hoursOfOperation">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Hours of Operation</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" v-model="res.hoursOfOperation">
+                                                    </div> -->
+                                                </div> 
+                                                <button type="submit">Save Changes</button>
+                                            </form>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <i class="fa-sharp fa-solid fa-trash" @click="restaurantDelete(res)"></i>
                             </td>
                         </tr>
                     </tbody>
@@ -94,11 +216,31 @@ export default {
     computed: {
         users() {
             return this.$store.state.users
+        },
+        restaurants() {
+            console.log(this.$store.state.restaurants)
+            return this.$store.state.restaurants
         }
     },
-    mounted() {
+    // mounted() {
+    //     this.$store.dispatch('fetchUsers');
+    //     this.$store.dispatch('fetchRestaurants')
+    //     const mondayHours = this.$store.state.restaurants.hoursOfOperation.monday;
+    //     const mondayOpenTime = mondayHours.open;
+    //     console.log(mondayOpenTime);
+
+    // },
+    mounted(res) {
         this.$store.dispatch('fetchUsers');
+        this.$store.dispatch('fetchRestaurants').then(() => {
+            if (this.$store.state.restaurants) {
+            // const mondayHours = this.$store.state.restaurants.hoursOfOperation?.Monday;
+            // const mondayOpenTime = mondayHours?.open;
+            console.log(this.$store.state.restaurants[res.restId].hoursOfOperation.Monday.open);
+            }
+        });
     },
+
     methods: {
         updateUser(user) {
             this.$store.dispatch('updateUser', { 
@@ -112,7 +254,35 @@ export default {
                     userPass: user.userPass
                 }
             })
-        }
+        },
+        deleteUser(user) {
+            alert(`user with id: ${user.userId} successfully`)
+            this.$store.dispatch('deleteUser', user.userId)
+            console.log(`user with id: ${user.userId} successfully`);
+        },
+
+        updateRestaurant(res) {
+            this.$store.dispatch('updateRestaurant', {
+                restId: res.restId,
+                restaurant: {
+                    restaurantName: res.restaurantName,
+                    restaurantDescription: res.restaurantDescription, 
+                    location: res.location, 
+                    address: res.address,
+                    imgUrl: res.imgUrl, 
+                    imgUrl2: res.imgUrl2, 
+                    imgUrl3: res.imgUrl3, 
+                    hoursOfOperation: res.hoursOfOperation 
+
+                }
+            })
+        },
+        restaurantDelete(res) {
+            alert(`restaurant with id: ${res.restId} successfully removed`)
+            this.$store.dispatch('deleteRestaurant', res.restId)
+            console.log(`restaurant with id: ${res.restId} successfully removed`);
+        },
+
     }
 }
 </script>
@@ -120,5 +290,9 @@ export default {
 .container-fluid {
     background-color: #1f2b21;
     min-height: 100vh;
+    min-width: 100vw;
+}
+table {
+    max-width: 95vw;
 }
 </style>

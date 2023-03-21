@@ -89,15 +89,37 @@ export default createStore({
         context.commit('setMessage', message);
       }
     },
+// DELETE A USER 
+    async deleteUser(context, userId) {
+      const res = await axios.delete(`${api}users/${userId}`)
+      context.commit('setUser', res.data)
+    },
 // FETCH ALL THE RESTAURANTS 
+    // async fetchRestaurants(context) {
+    //   const res = await axios.get(`${api}items`);
+
+    //   console.log(await res.data)
+    //   context.commit('setRestaurants',await res.data)
+    // },
     async fetchRestaurants(context) {
       const res = await axios.get(`${api}items`);
-      console.log(await res.data)
-      context.commit('setRestaurants',await res.data)
+    
+      const restaurants = await res.data.map((restaurant) => {
+        restaurant.hoursOfOperation = JSON.parse(restaurant.hoursOfOperation);
+        return restaurant;
+      });
+    
+      context.commit('setRestaurants', restaurants);
     },
+// FETCH A SINGLE RESTAURANT
     async fetchRestaurant(context, id) {
       const res = await axios.get(`${api}items/${id}`, { withCredentials: true });
       context.commit('setRestaurant', await res.data)
+    },
+// UPDATE RESTAURANTS 
+    async updateRestaurant(context, {restId, restaurant}){
+      const res = await axios.put(`${api}items/${restId}`, restaurant)
+      context.commit('setRestaurant', res.data);
     },
 // DISPLAY THE CART ITEMS 
     async fetchCart(context, id) {
