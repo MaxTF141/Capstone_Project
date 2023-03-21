@@ -65,7 +65,7 @@ exports.loginUser = async (req, res) => {
           res.cookie('authorization_token',
             jwt, {
             maxAge: 3600000000,
-            httpOnly: false,
+            httpOnly: true,
             path: '/',
             sameSite: 'none',
             secure: true
