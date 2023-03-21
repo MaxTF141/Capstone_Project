@@ -8,7 +8,8 @@ const Restaurants = function(restaurant) {
     this.galleryImgUrl = restaurant.galleryImgUrl;
     this.galleryImgUrl2 = restaurant.galleryImgUrl2;
     this.galleryImgUrl3 = restaurant.galleryImgUrl3;
-    this.hoursOfOperation = restaurant.hoursOfOperation;
+    this.hoursOfOperation = restaurant.hoursOfOperation
+    this.address = restaurant.address
     this.location = restaurant.location;
 };
 

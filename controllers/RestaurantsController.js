@@ -12,11 +12,13 @@ exports.create = (req, res) => {
     const restaurant = new Restaurant({
         restaurantName: req.body.restaurantName,
         restaurantDescription: req.body.restaurantDescription,
-        rating: req.body.rating,
-        hoursOfOperation: req.body.hoursOfOperation,
-        bookingDate: req.body.bookingDate,
-        bookingTime: req.body.bookingTime,
-        numberGuests: req.body.numberGuests
+        imgUrl: req.body.imgUrl,
+        galleryImgUrl: req.body.galleryImgUrl,
+        galleryImgUrl2: req.body.galleryImgUrl2,
+        galleryImgUrl3: req.body.galleryImgUrl3,
+        location: req.body.location,
+        address: req.body.address,
+        hoursOfOperation: req.body.hoursOfOperation
     });
 
     // Save Restaurant in the database
