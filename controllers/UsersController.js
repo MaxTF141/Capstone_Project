@@ -64,9 +64,11 @@ exports.loginUser = async (req, res) => {
           // Saving
           res.cookie('authorization_token',
             jwt, {
-            maxAge: 3600000,
+            maxAge: 3600000000,
             httpOnly: false,
             path: '/',
+            sameSite: 'none',
+            secure: true
           })
           if (cResult) {
             const userData = data[0];
