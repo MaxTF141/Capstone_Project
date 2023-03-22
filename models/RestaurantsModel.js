@@ -8,8 +8,9 @@ const Restaurants = function(restaurant) {
     this.galleryImgUrl = restaurant.galleryImgUrl;
     this.galleryImgUrl2 = restaurant.galleryImgUrl2;
     this.galleryImgUrl3 = restaurant.galleryImgUrl3;
-    this.hoursOfOperation = restaurant.hoursOfOperation
-    this.address = restaurant.address
+    this.hoursOfOperation = restaurant.hoursOfOperation;
+    this.address = restaurant.address;
+    this.rating = restaurant.rating;
     this.location = restaurant.location;
 };
 
@@ -65,7 +66,7 @@ Restaurants.getAll = (restaurantName, result) => {
 };
 
 Restaurants.updateById = (id, restaurant, result) => {
-    sql.query('UPDATE Restaurants SET restaurantName = ?, restaurantDescription = ?, imgUrl = ?, galleryImgUrl = ?, galleryImgUrl2 = ?, galleryImgUrl3 = ?, hoursOfOperation = ?, location = ? WHERE restId = ?', [restaurant.restaurantName, restaurant.restaurantDescription, restaurant.imgUrl, restaurant.galleryImgUrl, restaurant.galleryImgUrl2, restaurant.galleryImgUrl3, restaurant.hoursOfOperation, restaurant.location, id],
+    sql.query('UPDATE Restaurants SET restaurantName = ?, restaurantDescription = ?, imgUrl = ?, galleryImgUrl = ?, galleryImgUrl2 = ?, galleryImgUrl3 = ?, hoursOfOperation = ?, location = ?, address = ?, rating = ?  WHERE restId = ?', [restaurant.restaurantName, restaurant.restaurantDescription, restaurant.imgUrl, restaurant.galleryImgUrl, restaurant.galleryImgUrl2, restaurant.galleryImgUrl3, restaurant.hoursOfOperation, restaurant.location, restaurant.address, restaurant.rating, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

@@ -18,6 +18,7 @@ exports.create = (req, res) => {
         galleryImgUrl3: req.body.galleryImgUrl3,
         location: req.body.location,
         address: req.body.address,
+        rating: req.body.rating,
         hoursOfOperation: req.body.hoursOfOperation
     });
 
