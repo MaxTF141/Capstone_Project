@@ -1,6 +1,6 @@
 <template lang="">
   <section id="nav-bar" class="">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -77,10 +77,10 @@ export default {
 </script>
 
 <style>
-.navbar {
-  position: sticky;
-  top: 0;
-}
+/* .navbar {
+  position: fixed !important;
+  top: 0 !important;
+} */
 .nav-link-left {
   font-family: TeX Gyre Bonum;
   color: white;

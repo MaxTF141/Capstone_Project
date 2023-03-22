@@ -24,7 +24,8 @@
                             <td>{{ user.cellphoneNumber }}</td>
                             <td>{{ user.userRole }}</td>
                             <td class="d-flex justify-content-center gap-3">
-                                <i class="fa-solid fa-pen-to-square"  data-bs-toggle="modal" :data-bs-target="'#editModal1' + user.userId"></i>
+                                <i class="fa-solid fa-pen-to-square"  data-bs-toggle="modal" :data-bs-target="'#editModal1' + user.userId
+                                "></i>
 
                                 <!-- Modal -->
                                 <div class="modal fade" :id="'editModal1' + user.userId" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" :aria-labelledby="'editModalLabel1' + user.userId" aria-hidden="true">
