@@ -113,6 +113,7 @@
                             <td>{{ res.restaurantDescription }}</td>
                             <!-- <td>{{ res.location }}</td> -->
                             <td>{{ res.address }}</td>
+                            <td>{{ res.rating }}</td>
                             <!-- <td>{{ res.galleryImgUrl }}</td>
                             <td>{{ res.galleryImgUr2 }}</td>
                             <td>{{ res.galleryImgUr3 }}</td>
@@ -180,12 +181,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
+                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Rating</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" v-model="res.rating">
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="mb-3 row">
                                                     <label for="text" class="col-sm-4 col-form-label text-dark">Hours of Operation</label>
                                                     <div class="col-sm-8">
                                                         <input type="text" class="form-control" v-model="res.hoursOfOperation.Monday.open">
                                                     </div>
-                                                <!-- </div>
-                                                <div class="mb-3 row">
+                                                 </div> -->
+                                                <!--<div class="mb-3 row">
                                                     <label for="text" class="col-sm-4 col-form-label text-dark">Hours of Operation</label>
                                                     <div class="col-sm-8">
                                                         <input type="text" class="form-control" v-model="res.hoursOfOperation">
@@ -196,7 +203,7 @@
                                                     <div class="col-sm-8">
                                                         <input type="text" class="form-control" v-model="res.hoursOfOperation">
                                                     </div> -->
-                                                </div> 
+                                                <!-- </div>  -->
                                                 <button type="submit">Save Changes</button>
                                             </form>
                                         </div>
@@ -231,15 +238,9 @@ export default {
     //     console.log(mondayOpenTime);
 
     // },
-    mounted(res) {
+    mounted() {
         this.$store.dispatch('fetchUsers');
-        this.$store.dispatch('fetchRestaurants').then(() => {
-            if (this.$store.state.restaurants) {
-            // const mondayHours = this.$store.state.restaurants.hoursOfOperation?.Monday;
-            // const mondayOpenTime = mondayHours?.open;
-            console.log(this.$store.state.restaurants[res.restId].hoursOfOperation.Monday.open);
-            }
-        });
+        this.$store.dispatch('fetchRestaurants')
     },
 
     methods: {
@@ -263,6 +264,7 @@ export default {
         },
 
         updateRestaurant(res) {
+            console.log(res);
             this.$store.dispatch('updateRestaurant', {
                 restId: res.restId,
                 restaurant: {
@@ -272,18 +274,18 @@ export default {
                     address: res.address,
                     imgUrl: res.imgUrl, 
                     imgUrl2: res.imgUrl2, 
-                    imgUrl3: res.imgUrl3, 
-                    hoursOfOperation: res.hoursOfOperation 
-
+                    imgUrl3: res.imgUrl3,
+                    rating: res.rating
+                    // hoursOfOperation: res.hoursOfOperation 
                 }
             })
         },
+            
         restaurantDelete(res) {
             alert(`restaurant with id: ${res.restId} successfully removed`)
             this.$store.dispatch('deleteRestaurant', res.restId)
             console.log(`restaurant with id: ${res.restId} successfully removed`);
         },
-
     }
 }
 </script>

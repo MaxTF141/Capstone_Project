@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-const api = 'https://bookingsecure.onrender.com/'
+const api = 'http://localhost:2222/'
 
 export default createStore({
   state: {
@@ -56,7 +56,7 @@ export default createStore({
     },
 // SIGN OUT A USER
     async signOut(context) {
-      await axios.post(`${api}logout`, false);
+      await axios.post(`${api}logout`);
       context.commit('isAuthenticated', false)
       context.commit('setUser', null);
     },
@@ -128,6 +128,7 @@ export default createStore({
     },
 // UPDATE RESTAURANTS 
     async updateRestaurant(context, {restId, restaurant}){
+      console.log(restId, restaurant);
       const res = await axios.put(`${api}items/${restId}`, restaurant)
       context.commit('setRestaurant', res.data);
     },
