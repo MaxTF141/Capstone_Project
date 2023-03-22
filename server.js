@@ -6,6 +6,12 @@ const app = express();
 
 app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
 
+app.use((req, res, next)=> {
+  res.header("Access-Control-Allow-Methods", "*")
+  res.header("Access-Control-Allow-Headers", "*")
+  next();
+});
+
 app.use(
   cookieParser(),
   express.json());
