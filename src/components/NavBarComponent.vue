@@ -27,10 +27,11 @@
                 <a href="#" class="dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAE5UlEQVR4nO1Z3YscRRAf5VD8AvH7xY/EFxMVP1HwUeKfkDOCL+bOqZrVMyaCmhjdJ7+fjCJIsls9C4ocfpwxJhclriEhCclLHjY33XuJguCbLz4IuUvOk+rdve29nZnumZ3bE0nBwNDT3fWr6qrqqhrPu0T/I/rjM//q2ar/sCLcpMifkCJ4jR9+5zH+xnO8/xI1hX+3JHxTCTyqBM4rgYuWZ14RHlECd6pKsHb1gFfhKUXwsyT8xwF07CP1WjikwmDD0IDPitK9kuCXWEACFpTASBJ+Iwk/VgTv8cPvPKa/tebECVRvVmD9igFfLJcvVwK2x5gJm8SUpGDjTPjCjbZ95Of+TTL0n1YE38XtJQlfX1z0LisUfGOydK0i2N/HTOCu2Wpwe959z4X+HUrAJ8sFkQL2Mc9CwLPGFOGpHvDshGGwrjB/qsD6dhAwFAQnmfdAG0d7Nl9ngmenkwRv1+vlEa9gqtfLI0rAu71BAU7mPglt84bZSMKLkmDMZW2DSrdx3Jehv00K2MrvPOayVhE8z7y6fOH7XD7RdlhT81bwkQgekQQH4yKNHiOYbob4kIsQqifcwquZQ6XpWGw2tjWS8GVTc4kPwQVF+JJVCIHvGz43l8nnJOFh02FtNs/gM19kFiHq9fKIJDxm+MMh9xs2g+Qts3HQfOxJlB5M23umhvf1WEIVn7QKoK/2JbvFXdb5BNN5UwlFsN9h/08NU/7JJTHrhLF52yXFkSUlNbDnQgIWzu0euzWNx5k9pTs7p8DYIoK7EidLgrcM85myawc35dZ+V4hRGx8pcK+xZkcyIOM2dNlYEb4ysAChv83KR8AzRkg/HDuJC42loxKw4JKYDUuAZmXi5iXTJpz7fXLrVX2TdCXVdZYZ26bDNCEmJUB2zTsmevWCgW89ByrCic/W8BYXXu30O1loXbdmCJ9L6wQeyC8A/uDOR6fdHQW/aMt93nHdmHMbfSllFYDXVOABVz6MyRBge78ABG8YR/SBl4EiAVuyn0CMFlNIEn6YGkrNfEYSCC8jcW7jdBJ6TjbwTJIwTM2jdJ2awzZN4ujA6UFSOs37ZjGbJF/j+ttbTlHoP2r4wFlvAOL0gBXCxUz7GXWNNkmkCH/t4OOQ3zeh+dHElVLA+c6k1JxjyHSmlQ91TvI8Y42daObfTRE8l7e12Gqb9LYWeYy/xd6iFoqquNmw/yOJE81QymmybWO9phKsbUewo7p+sDqxnsM51w5ZG1/jwoPLVKfyks2mE0k49+DSMhF4GGzQ9e+grUWC6bRCJar693fzILjA5pSuUcIvjVhdiQG+Tgr8MS/olPA6Lcm/p0/7AskQ+ItU8H3RSMBCVA2e4HFubSgR+FLg34WDF10HZZ/hlo5WVs1/vLdchcesArROwewHQeM32nK9FPj1SgFX/YJ8pXkSNIyxfV6WnqUk+Ms43j+HBV7F8GQsmXuwbC5DBy2STgTHvaykbZ5warXBK8Kp3O12vpgk4YlV0zzhiYH/qTV2j90gBRwfvtnAcebtFUGna89es6y1sdI2v5d5ekUS2yF3EJzShfz2Psc8Cv/F1HcTG7lJcfYOB4v862Mlzl+4yBj8NysecGrarpggtfE1Om3mlrxjNspz9ZqaWzY6NGpMbryCS0auwCLysVMPtN5hlL/xnNXGeYm8AulfJKgHczjPD+IAAAAASUVORK5CYII=">
                 </a>
-                <ul class="dropdown-menu dropdown-menu-dark">
-                  <li><router-link :to="`/profile/${user.userId}`" class="dropdown-item" >See your Profile</router-link></li>
+                <ul class="dropdown-menu dropdown-menu-dark"> 
+                  <li><router-link :to="`/profile/${user.userId}`" class="dropdown-item active" >See your Profile</router-link></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="#" @click="signOutUser">Sign Out</a></li>
+                  <li><router-link to="/admin" class="dropdown-item" href="#" v-if="user.userRole == 'Admin'">Sign Out</router-link></li>
                 </ul>
               </div>
             </div>
@@ -56,8 +57,9 @@ export default {
   },
   mounted(){
     const userId = Cookies.get('userId')
-      if(userId) {
-        this.$store.dispatch('fetchUser', userId)
+    if(userId) {
+      this.$store.dispatch('fetchUser', userId)
+      console.log(userId);
       }
     },
     methods: {

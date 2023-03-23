@@ -16,6 +16,8 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Alkalami&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alkalami&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Alkalami&family=Montserrat:wght@300&family=Sono:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200&display=swap');
+
 :root {
   --primary-colors: #d9a068;
   --secondary-colors: #1f2b21;
