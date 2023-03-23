@@ -11,7 +11,8 @@ const Restaurants = function(restaurant) {
     this.hoursOfOperation = restaurant.hoursOfOperation;
     this.address = restaurant.address;
     this.rating = restaurant.rating;
-    this.location = restaurant.location;
+    this.latitude = restaurant.latitude;
+    this.longitude = restaurant.longitude;
 };
 
 Restaurants.create = (newRestaurant, result) => {
@@ -66,7 +67,7 @@ Restaurants.getAll = (restaurantName, result) => {
 };
 
 Restaurants.updateById = (id, restaurant, result) => {
-    sql.query('UPDATE Restaurants SET restaurantName = ?, restaurantDescription = ?, imgUrl = ?, galleryImgUrl = ?, galleryImgUrl2 = ?, galleryImgUrl3 = ?, hoursOfOperation = ?, location = ?, address = ?, rating = ?  WHERE restId = ?', [restaurant.restaurantName, restaurant.restaurantDescription, restaurant.imgUrl, restaurant.galleryImgUrl, restaurant.galleryImgUrl2, restaurant.galleryImgUrl3, restaurant.hoursOfOperation, restaurant.location, restaurant.address, restaurant.rating, id],
+    sql.query('UPDATE Restaurants SET restaurantName = ?, restaurantDescription = ?, imgUrl = ?, galleryImgUrl = ?, galleryImgUrl2 = ?, galleryImgUrl3 = ?, hoursOfOperation = ?, location = ?, address = ?, rating = ?, latitude = ?, longitude = ?  WHERE restId = ?', [restaurant.restaurantName, restaurant.restaurantDescription, restaurant.imgUrl, restaurant.galleryImgUrl, restaurant.galleryImgUrl2, restaurant.galleryImgUrl3, restaurant.hoursOfOperation, restaurant.location, restaurant.address, restaurant.rating, restaurant.latitude, restaurant.longitude, id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);

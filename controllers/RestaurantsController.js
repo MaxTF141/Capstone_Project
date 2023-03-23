@@ -19,7 +19,9 @@ exports.create = (req, res) => {
         location: req.body.location,
         address: req.body.address,
         rating: req.body.rating,
-        hoursOfOperation: req.body.hoursOfOperation
+        hoursOfOperation: req.body.hoursOfOperation,
+        longitude: req.body.longitude,
+        latitude: req.body.latitude
     });
 
     // Save Restaurant in the database
