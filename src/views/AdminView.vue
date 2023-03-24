@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h2 class="text-white">Users</h2>
+                <div class="table-responsive">
                 <table class="table table-dark table-borderless mx-auto">
                     <thead>
                         <tr>
@@ -86,10 +87,12 @@
                     </tbody>
                 </table>
             </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <h2 class="text-white">Restaurants</h2>
+                <div class="table-responsive">
                 <table class="table table-dark table-borderless table-responsive mx-auto">
                     <thead>
                         <tr>
@@ -141,7 +144,7 @@
                                                 <div class="mb-3 row">
                                                     <label for="message" class="col-sm-4 col-form-label text-dark">Description</label>
                                                     <div class="col-sm-8">
-                                                        <input type="message" class="form-control" v-model="res.restaurantDescription">
+                                                        <input type="message" class="form-control message" v-model="res.restaurantDescription">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
@@ -215,6 +218,7 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     </div>
@@ -291,11 +295,15 @@ export default {
 </script>
 <style scoped>
 .container-fluid {
-    background-color: #1f2b21;
+    background-color: white;
     min-height: 100vh;
     min-width: 100vw;
 }
 table {
     max-width: 95vw;
 }
+.message {
+    height: 100px;
+}
+
 </style>

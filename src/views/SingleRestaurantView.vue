@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <!-- <form @submit.prevent="bookingRestaurant">
+         <form @submit.prevent="bookingRestaurant">
             <div class="mb-3 row">
                 <label for="date" class="col-sm-2 col-form-label">Date</label>
                 <div class="col-sm-10">
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <button type="submit">Add to Cart</button>
-        </form> -->
+        </form>
     </section>
 </template>
 <script>
@@ -98,7 +98,10 @@ export default {
             if (userId) {
                 console.log(this.booking.userId, this.booking, this.booking.bookingDate);
                 this.booking.userId = userId;
-                await this.$store.dispatch('addToCart',{id: this.booking.userId, payload: this.booking});
+                await this.$store.dispatch('addToCart',{
+                    id: this.booking.userId, 
+                    payload: this.booking
+                });
             } else {
                 console.log('error');
             }

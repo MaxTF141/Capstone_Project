@@ -1,15 +1,30 @@
 <template>
   <NavBar /> 
-  <router-view />
+  <SpinnerC v-if="isLoading" />
+  <div v-else>
+    <router-view />
+  </div>
 </template>
 
 <script>
 import NavBar from './components/NavBarComponent.vue'
-
+import SpinnerC from './components/SpinnerComponent.vue'
 export default {
   components: {
-    NavBar
+    NavBar,
+    SpinnerC
+  },
+  data() {
+    return{
+      isLoading: true,
+    }
+  },
+  created() {
+    setTimeout(()=>{
+      this.isLoading = false;
+    }, 2000);
   }
+
 }
 </script>
 <style>

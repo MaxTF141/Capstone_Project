@@ -5,7 +5,7 @@
         </div>
         <div class="searchBar">
             <div class="input-group mx-auto mb-0">
-                <input type="search" class="form-control rounded search" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                <input type="text" class="form-control rounded search"  v-model="searching" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                 <button type="button" class="btn btn-outline-primary">search</button>
             </div>
             <hr class="mx-auto"/>
@@ -13,8 +13,8 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12 d-flex flex-column gap-5">
-                <div class="card d-flex flex-row mx-auto" style="width: 60rem;"  v-for="res in restaurants" :key="res.userId">
+            <div class="col-12 d-flex flex-column gap-5" v-if="filtering">
+                <div class="card d-flex flex-row mx-auto" style="width: 60rem;"  v-for="res in filtering" :key="res.userId">
                     <img :src="res.imgUrl" class="card-img-top" alt="...">
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div class="heading">
@@ -45,12 +45,23 @@ export default {
     components: {
         Rating
     },
+    data() {
+        return {
+            searching: '',
+        }
+    },
     mounted() {
         this.$store.dispatch('fetchRestaurants')
     },
     computed: {
         restaurants() {
             return this.$store.state.restaurants;
+        },
+        filtering() {
+            if(this.searching.trim().length > 0){
+                return this.restaurants.filter((name)=> name.restaurantName.toLowerCase().includes(this.searching.trim()))
+            }
+            return this.restaurants
         }
     },
     

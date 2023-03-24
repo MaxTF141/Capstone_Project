@@ -85,7 +85,7 @@ export default {
 
     form {
         width: 400px;
-        border: 0px solid #ff9900;
+        /* border: 0px solid #ff9900; */
         border-radius: 30px;
         box-shadow: 3px 3px 7px #bbbbbb;
     }

@@ -31,7 +31,7 @@
                   <li><router-link :to="`/profile/${user.userId}`" class="dropdown-item" >See your Profile</router-link></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="#" @click="signOutUser">Sign Out</a></li>
-                  <li><router-link to="/admin" class="dropdown-item" href="#" v-if="user.userRole == 'Admin'">Sign Out</router-link></li>
+                  <li><router-link to="/admin" class="dropdown-item" href="#" v-if="user.userRole == 'Admin'">Admin</router-link></li>
                 </ul>
               </div>
             </div>
@@ -58,8 +58,8 @@ export default {
   mounted(){
     const userId = Cookies.get('userId')
     if(userId) {
-      this.$store.dispatch('fetchUser', userId)
       console.log(userId);
+      this.$store.dispatch('fetchUser', userId)
       }
     },
     methods: {

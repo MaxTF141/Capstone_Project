@@ -9,9 +9,9 @@
                         <img :src="user.userProfile" alt="">
                     </div>
                     <div class="name-info">
-                        <h4>Timothy Jennike</h4>
-                        <h4>Admin</h4>
-                        <h4>tjennike@gmail.com</h4>
+                        <h4>{{ user.firstName + ' ' + user.lastName }} </h4>
+                        <h4>{{user.userRole}}</h4>
+                        <h4>{{ user.userEmail }}</h4>
                     </div>
                 </div>
             </div>
@@ -74,6 +74,7 @@ export default {
 <style scoped>
     .container-fluid {
     padding-top: 100px;
+    background-color: #dedede;
     }
     .heading {
         font-family: 'Roboto Slab', serif;
@@ -82,7 +83,9 @@ export default {
         /* height: 100px; */
         border: 1px solid #dedede;
         border-radius: 10px;
-        box-shadow: 1px 1px 2px;
+        box-shadow: 3px 3px 7px #bbbbbb;
+        background-color: white;
+
     }
 
     /* .profile-image {

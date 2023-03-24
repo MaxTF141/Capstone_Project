@@ -91,7 +91,7 @@ export default {
     min-height: 100vh;
   }
   .hero-section {
-    background-color: #ffaf38;
+    background-color: #ffaf38e9;
 
   }
   /* h1 {
@@ -100,13 +100,13 @@ export default {
   } */
   h1 {
     font-family: 'Kanit', sans-serif;
-    color: #3787ff;
+    color: white;
     font-size: 80px;
     letter-spacing: 2px;
   }
   h2 {
     font-family: 'Kanit', sans-serif;
-    color: #3787ff;
+    color: white;
     font-size: 50px;
   }
   hr {
@@ -116,13 +116,13 @@ export default {
     margin-bottom: 0px;
   }
   .button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #e98c00;
-  color: #fff;
-  border: none;
-  border-radius: 0;
-}
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e98c00;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+  }
 
   /* h3 {
     font-family: 'Titillium Web', sans-serif;
