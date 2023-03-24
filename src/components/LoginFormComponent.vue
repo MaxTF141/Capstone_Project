@@ -27,7 +27,7 @@
             
                     <!-- Submit button -->
                     <div class="signB d-flex justify-content-center">
-                        <button type="submit" class="btn-block mb-4">Sign in</button>
+                        <button type="submit" class="button mb-4">Sign in</button>
                     </div>
             
                     <!-- Register buttons -->
@@ -79,11 +79,15 @@ export default {
 }
 </script>
 <style scoped>
+    .container-fluid {
+        background-color: #f8fafb;
+    }
+
     form {
         width: 400px;
-        border: 0px solid #d9a068;
+        border: 0px solid #ff9900;
         border-radius: 30px;
-        box-shadow: 0 0 2px inset black;
+        box-shadow: 3px 3px 7px #bbbbbb;
     }
     .form-outline, .forgetP {
         width: 80%;
@@ -98,11 +102,14 @@ export default {
     form label {
         font-family: 'Montserrat', sans-serif;
     }
-    button {
-        background-color: #d9a068;
-        border-color: #d9a068;
-        border-radius: 10px;
-    }
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #e98c00;
+        color: #fff;
+        border: none;
+        border-radius: 0;
+    }    
     button a {
         text-decoration: none ;
         color: #1f2b21;

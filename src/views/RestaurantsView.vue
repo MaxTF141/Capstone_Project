@@ -32,7 +32,7 @@
                             <p class="py-auto ">{{ res.address }}</p>
                             </div>
                         </div>
-                        <router-link :to="{ name: 'restaurant', params:{id: res.restId} }" class="btn btn-primary">View More...</router-link>
+                        <router-link :to="{ name: 'restaurant', params:{id: res.restId} }" class="btn btn-warning">View More...</router-link>
                     </div>
                 </div>
             </div>
@@ -85,5 +85,6 @@ hr {
   }
   .container-fluid {
     margin-top: 230px;
+    background-color: #f8fafb;
   }
 </style>

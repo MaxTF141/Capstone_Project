@@ -1,6 +1,24 @@
 <template>
   <section id="home" class="home h-100 d-flex justify-content-center align-items-center">
-      <img class="image" src="https://i.postimg.cc/qBNVZ1gF/image.jpg" alt="">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-7 mx-auto ">
+
+          </div>
+          <div class="col-5 hero-section d-flex pt-5">
+              <div class="hero-text pt-5 mt-5">
+                  <h1>Book a Table at Your Favorite Restaurant</h1>
+                  <hr class="mx-auto"/>
+                  <h2 class="text-end pt-5 pe-3">Hassle-free reservations with our online booking system</h2>
+                  <div class="bttn d-flex justify-content-end pe-3 pt-5">
+                    <router-link to="/restaurants"><button class="button">BOOK NOW</button></router-link>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!-- <section id="home" class="home h-100 d-flex justify-content-center align-items-center">
       <div class="container-fluid">
         <div class="row">
           <div class="col-6 mx-auto">
@@ -13,8 +31,8 @@
           </div>
         </div>
       </div>
-  </section>
-  <section id="information">
+  </section> -->
+  <!-- <section id="information">
     <div class="container-fluid h-100">
       <div class="row">
         <div class="col-md-6 col-12">
@@ -50,7 +68,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 </template>
 <script>
 export default {
@@ -58,98 +76,57 @@ export default {
 }
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&family=Open+Sans:wght@600&family=Titillium+Web:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300&family=Open+Sans:wght@600&family=Titillium+Web:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;300&family=Open+Sans:wght@600&family=Sacramento&family=Titillium+Web:wght@900&display=swap');
   #home {
-    max-width: 100vw;
+    background-image: url(https://i.postimg.cc/G3FqDgh9/TOO-restaurant-Panoramique-vue-Paris-nuit-v2-scaled.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     min-height: 100vh;
-    position: relative;
-    background-color: #1f2b21;
-    overflow-x: none;
+    min-width: 100vh; 
   }
-  .image {
-    position: absolute;
-    left: 0;
-    top: 0; 
-    min-width: 100vw;
-    max-width: 100vw;
-    opacity: 0.25;
-    z-index: 0;
-    overflow-y: none;
+  .row {
+    min-height: 100vh;
   }
-  .col {
-    margin: auto;
+  .hero-section {
+    background-color: #ffaf38;
+
   }
-  .hero {
-    font-family: Migra Extrabold;
-    color: #d9a068;
-    font-size:5rem;
-    z-index: 1;
+  /* h1 {
+    font-family: 'Sacramento', sans-serif;
+    color: #0066FF;
+  } */
+  h1 {
+    font-family: 'Kanit', sans-serif;
+    color: #3787ff;
+    font-size: 80px;
+    letter-spacing: 2px;
   }
-  .heroSmallText {
-    font-family: Migra Extrabold;
-    font-size: 3rem;
-    color: #d9a068;
-    z-index: 1;
+  h2 {
+    font-family: 'Kanit', sans-serif;
+    color: #3787ff;
+    font-size: 50px;
   }
   hr {
-    width: 60%;
-    /* height: 10px; */
-    color: #d9a068;
-    border-top: 5px solid #d9a068 !important;
-    opacity: 1 !important;
+    width: 75%;
+    color: #bbbbbb;
+    border-top: 2px solid #000000!important;
+    margin-bottom: 0px;
   }
-  .buttonB {
-    background-color: #d9a068;
-    border-color: #d9a068;
-    border-radius: 10px;
-    z-index: 1;
-  }
-  .buttonText {
-    text-decoration: none !important;
-    color: #1f2b21;
-  }
+  .button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #e98c00;
+  color: #fff;
+  border: none;
+  border-radius: 0;
+}
 
-
-  #information {
-    position: relative;
-    background-color: #d9a068;
-    width: 100vw;
-    min-height: 100vh;
-    z-index: 1;
-  }
-  .heading {
-    font-family: Migra Extrabold;
-    font-size: xx-large;
-    color: #1f2b21;
-  }
-  .infoParagraph {
-    font-size: xx-large;
-    font-family: 'Montserrat', sans-serif;
-  }
-
+  /* h3 {
+    font-family: 'Titillium Web', sans-serif;
+    color: #0066FF;
+  } */
   
-  #moreInformation {
-    min-height: 100vh;
-  }
-  .headingTwo {
-    font-family: Migra Extrabold;
-    font-size: xx-large;
-    color: #1f2b21;
-  }
-  .infoParagraphTwo, .list {
-    font-family: 'Montserrat', 'sans-serif';
-    font-size: x-large;
-    color: #1f2b21;
-  }
-  li {
-    color: #1f2b21;
-  }
-  .bg img {
-    min-height: 100%;
-    min-width: 100%;
-    /* background: url("https://i.postimg.cc/Y2XFVw1G/cape-town-restaurants-waterfront-baia.jpg") no-repeat; */
-  }
-  .buttonR button {
-    background-color: #d9a068;
-    border-color: #d9a068cb;
-  }
 </style>
