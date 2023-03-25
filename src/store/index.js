@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 
-const api = 'http://localhost:2222/'
+const api = 'https://bookingsecure-3tqe.onrender.com/'
 
 export default createStore({
   state: {
