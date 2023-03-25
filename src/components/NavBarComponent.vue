@@ -116,8 +116,6 @@ nav a.router-link-exact-active {
   color: #ff9900;
 }
 .dropstart .dropdown-toggle::before {
-  color: #ff9900;
-  background-color: black;
-  z-index: 3;
+  display: none;
 }
 </style>

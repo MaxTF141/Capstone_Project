@@ -48,6 +48,7 @@
                                 </div>
                             </div>
                         </div>
+                        <button>Save Changes</button>
                     </form>
                 </div>
             </div>
@@ -73,8 +74,9 @@ export default {
 </script>
 <style scoped>
     .container-fluid {
-    padding-top: 100px;
-    background-color: #dedede;
+        padding-top: 100px;
+        background-color: #dedede;
+        min-height: 100vh;
     }
     .heading {
         font-family: 'Roboto Slab', serif;
@@ -101,11 +103,20 @@ export default {
         border-radius: 50%;
     }
     hr {
-    width: 75%;
-    /* height: 10px; */
-    color: #bbbbbb;
-    border-top: 2px solid #000000!important;
-    margin-bottom: 50px;
+        width: 75%;
+        /* height: 10px; */
+        color: #bbbbbb;
+        border-top: 2px solid #000000!important;
+        margin-bottom: 50px;
     }
+    button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #e98c00;
+        color: #ffff;
+        border: none;
+        border-radius: 0;
+    }
+
 
 </style>

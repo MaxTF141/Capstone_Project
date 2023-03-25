@@ -134,11 +134,11 @@ export default createStore({
       context.commit('setRestaurant', res.data);
     },
 // DELETE A RESTAURANT 
-    async deleteRestaurant(context, dispatch,   { id }) {
-      const {res, message} = await axios.delete(`${api}user/${id}`)
+    async deleteRestaurant(context, id ) {
+      console.log(id);
+      const {res, message} = await axios.delete(`${api}items/${id}`)
       if(res) {
         context.commit('setRestaurant', await res.data);
-        dispatch('fetchCart')
       } else {
         context.commit('setMessage', message)
       }
@@ -174,21 +174,23 @@ export default createStore({
       }
     },
 // CLEAR THE WHOLE CART 
-    async clearCart(context, userId) {
+    async clearCart(context, dispatch, userId) {
       const {res, message} = await axios.delete(`${api}user/${userId}/cart`);
       if(res) {
         context.commit('setCart', await res.data)
+        dispatch('fetchCart')
       } else {
         context.commit('setMessage', message)
       }
     },
 
 // UPDATE AN ITEM BY ID
-    async updateCartItem(context,  { userId, id, changes }) {
+    async updateCartItem(context, dispatch,   { userId, id, changes }) {
       console.log(userId, id, changes)
       const {res, message} = await axios.put(`${api}user/${userId}/cart/${id}`, changes)
       if(res) {
         context.commit('setCart', await res.data)
+        dispatch('fetchCart')
       } else {
         context.commit('setMessage', message)
       }

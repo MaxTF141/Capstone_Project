@@ -100,27 +100,17 @@
                         <th scope="col">Restaurant Main Image</th>
                         <th scope="col">Restaurant Name</th>
                         <th scope="col">Description</th>
-                        <!-- <th scope="col">Location</th> -->
-                        <th scope="col">Address</th>
-                        <!-- <th scope="col">Gallery Image #1</th> -->
-                        <!-- <th scope="col">Gallery Image #2</th> -->
-                        <!-- <th scope="col">Gallery Image #3</th>   -->
-                        <th scope="col" class="text-center">Hours of Operation</th>
+                        <th scope="col">Price</th>
+                        <th scope="col" class="text-center">Edit</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="res in restaurants" :key="res.restId" class="bg-dark">
                             <th scope="row">{{ res.restId }}</th>
-                            <td><img :src="res.imgUrl" alt=""> </td>
+                            <td class="image"><img :src="res.imgUrl" alt=""> </td>
                             <td>{{ res.restaurantName }}</td>
                             <td>{{ res.restaurantDescription }}</td>
-                            <!-- <td>{{ res.location }}</td> -->
-                            <td>{{ res.address }}</td>
-                            <td>{{ res.rating }}</td>
-                            <!-- <td>{{ res.galleryImgUrl }}</td>
-                            <td>{{ res.galleryImgUr2 }}</td>
-                            <td>{{ res.galleryImgUr3 }}</td>
-                            <td>{{ res.hoursOfOperation }}</td> -->
+                            <td>R {{ res.bookingPrice }}</td>
                             <td class="d-flex justify-content-center gap-5">
                                 <i class="fa-solid fa-pen-to-square"  data-bs-toggle="modal" :data-bs-target="'#editModal' + res.restId"></i>
 
@@ -145,6 +135,12 @@
                                                     <label for="message" class="col-sm-4 col-form-label text-dark">Description</label>
                                                     <div class="col-sm-8">
                                                         <input type="message" class="form-control message" v-model="res.restaurantDescription">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Price</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control text" v-model="res.bookingPrice">
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
@@ -274,11 +270,13 @@ export default {
                 restaurant: {
                     restaurantName: res.restaurantName,
                     restaurantDescription: res.restaurantDescription, 
+                    bookingPrice: res.bookingPrice,
                     location: res.location, 
                     address: res.address,
-                    imgUrl: res.imgUrl, 
-                    imgUrl2: res.imgUrl2, 
-                    imgUrl3: res.imgUrl3,
+                    imgUrl: res.imgUrl,
+                    galleryImgUrl: res.galleryImgUrl, 
+                    galleryImgUrl2: res.galleryImgUrl2, 
+                    galleryImgUrl3: res.galleryImgUrl3,
                     rating: res.rating
                     // hoursOfOperation: res.hoursOfOperation 
                 }
@@ -304,6 +302,16 @@ table {
 }
 .message {
     height: 100px;
+}
+.image {
+    width: 200px;
+    height: 200px;
+}
+.image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 </style>

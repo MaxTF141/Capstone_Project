@@ -18,8 +18,8 @@
                             </thead>
                             <tbody>
                                 <tr  v-for="booking in cart" :key="booking.cartId">
-                                    <td class="d-flex">
-                                        <img :src="booking.imgUrl" alt="">
+                                    <td class="d-flex justify-content-between">
+                                        <img class="cart-img" :src="booking.imgUrl" alt="">
                                         <div class="product-content ps-2">
                                             <h4>{{booking.restaurantName}}</h4>
                                             <h5>{{ booking.address }}</h5>
@@ -33,81 +33,44 @@
                                             <button class="button" type="submit">Save changes</button>
                                         </form>
                                     </td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
+                                    <td><h4>R {{ booking.bookingPrice }}</h4></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-3">
                     <div class="box-1">
-                        dd
+                        <div class="checkout">
+                            <h2 class="p-3">Checkout</h2>
+                            <hr class="mx-auto"/>
+                            <div class="checkout-items" v-for="booking in cart" :key="booking.cartId">
+                                <div class="m-3 d-flex justify-content-between pb-3">
+                                    <img class="checkout-img me-1" :src="booking.imgUrl" alt="">
+                                    <div class="checkout-info">
+                                        <p class="mb-0">{{ booking.restaurantName }}</p>
+                                        <p>{{ booking.address}}</p>
+                                    </div>
+                                    <p class="">R{{ booking.bookingPrice }}.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-1">
+                        <div class="checkout-total d-flex justify-content-between p-3">
+                            <p>Your bookings total:</p>
+                            <p>R199.00</p>
+                        </div>
+                        <div class="checkout-amount p-3 d-flex justify-content-between">
+                            <p>R 199.00</p>
+                             <button class="button2">Checkout</button> 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <button @click.prevent="clearCart">Clear Cart</button>
-    <div class="mb-5" v-for="booking in cart" :key="booking.cartId">
-        <li>{{booking.restaurantName}}</li>
-        <li>{{booking.restaurantDescription}}</li>
-        <li>{{booking.location}}</li>
-        <li>{{booking.bookingDate}}</li>
-        <li>{{booking.bookingTime}}</li>
-        <li>{{booking.numberGuests}}</li>
-        <button class="btn btn-success" @click="deleteItem(booking)">delete</button>
-                 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="'#editModal' + booking.cartId">
-        Launch static backdrop modal
-        </button>
-
-
-        <div class="modal fade" :id="'editModal' + booking.cartId" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" :aria-labelledby="'editModalLabel' + booking.cartId" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" :id="'editModalLabel' + booking.cartId">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                          
-                <form @submit.prevent="updateItem(booking)">
-                    <div class="mb-3 row">
-                        <label for="date" class="col-sm-2 col-form-label">Date</label>
-                        <div class="col-sm-10">
-                            <input type="date" id="staticEmail" v-model="booking.bookingDate">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="time" class="col-sm-2 col-form-label">Time</label>
-                        <div class="col-sm-10">
-                            <input type="time" class="form-control" id="inputPassword" v-model="booking.bookingTime">
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label for="numbers" class="col-sm-2 col-form-label">Guests</label>
-                        <div class="col-sm-10">
-                            <input type="number" class="form-control" id="inputPassword" v-model="booking.numberGuests">
-                        </div>
-                    </div>
-                    <button type="submit">Save Changes</button>
-                </form>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
-            </div>
-        </div>
-        </div>
-
-    </div>
+    <button @click.prevent="clearCart()">Clear Cart</button>
 </template>
 <script>
 export default {
@@ -162,7 +125,7 @@ export default {
         box-shadow: 3px 3px 7px #bbbbbb;
         background-color: white;
     }
-    .box-1 img {
+    .cart-img {
         object-fit: cover;
         width: 150px;
         height: 150px;
@@ -176,5 +139,42 @@ export default {
         border: none;
         border-radius: 0;
         }
-
+        hr {
+        width: 100%;
+        color: #bbbbbb;
+        border-top: 2px solid #000000!important;
+        margin-bottom: 0px;
+    }
+    .checkout-img {
+        object-fit: cover;
+        width: 60px;
+        height: 60px;
+        border-radius: 10%;
+    }
+   .checkout-amount {
+        background-color: #e98c00;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    .button2 {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #fff;
+        color: #e98c00;
+        border: none;
+        border-radius: 0;
+        }
+    .checkout p{
+        font-size: small;
+        font-family: 'Nunito', sans-serif;
+        font-weight: bold;
+    }
+    h2 {
+    font-family: 'Roboto Slab', serif;
+    letter-spacing: 4px;
+    }
+    h4, h4 {
+        font-family: 'Nunito', sans-serif;
+    }
+ 
 </style>

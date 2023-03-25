@@ -2,10 +2,10 @@
   <section id="home" class="home h-100 d-flex justify-content-center align-items-center">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-7 mx-auto ">
+          <div class="col-md-7 col-12 mx-auto ">
 
           </div>
-          <div class="col-5 hero-section d-flex pt-5">
+          <div class="col-md-5 col-12 hero-section d-flex pt-5">
               <div class="hero-text pt-5 mt-5">
                   <h1>Book a Table at Your Favorite Restaurant</h1>
                   <hr class="mx-auto"/>
@@ -85,7 +85,7 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     min-height: 100vh;
-    min-width: 100vh; 
+    max-height: 100vh; 
   }
   .row {
     min-height: 100vh;
