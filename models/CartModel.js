@@ -23,7 +23,7 @@ Bookings.create = (booking, result) => {
 };
 
 Bookings.getAll = (id, result) => {
-  sql.query('SELECT c.car tId, u.userId, r.restaurantName, r.imgUrl, r.address, r.location, c.bookingDate, c.bookingTime, c.numberGuests FROM Cart c INNER JOIN Restaurants r ON c.restId = r.restId INNER JOIN Users u ON c.userId = u.userId WHERE u.userId = ?;', [id] ,(err, res) => {
+  sql.query('SELECT c.cartId, u.userId, r.restaurantName, r.bookingPrice, r.imgUrl, r.address, r.location, c.bookingDate, c.bookingTime, c.numberGuests FROM Cart c INNER JOIN Restaurants r ON c.restId = r.restId INNER JOIN Users u ON c.userId = u.userId WHERE u.userId = ?;', [id] ,(err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
