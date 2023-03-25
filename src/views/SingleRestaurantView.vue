@@ -117,38 +117,24 @@ export default {
     props: ['id'],
     computed: {
         restaurant() {
-            console.log(this.$store.state);
             return this.$store.state.restaurant;
         },
-        // mySqlDate() {
-        //     if(!this.inputDate) return '';
-        //     const dateParts = this.inputDate.split('/');
-        //     return dateParts.join('-');
-        // },
 
     },
 
     mounted() {
         this.$store.dispatch('fetchRestaurant', this.id);
-        console.log(this.id);
         
     },
     methods: {
-        // updatedDate() {
-        //     this.booking.bookingDate = this.mySqlDate;
-        //     console.log(this.booking.bookingDate)
-        // },
         async bookingRestaurant() {
             const userId = Cookies.get('userId');
             if (userId) {
-                console.log(this.booking.userId, this.booking, this.booking.bookingDate);
                 this.booking.userId = userId;
                 await this.$store.dispatch('addToCart',{
                     id: this.booking.userId, 
                     payload: this.booking
                 });
-            } else {
-                console.log('error');
             }
         }
     }

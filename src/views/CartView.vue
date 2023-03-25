@@ -81,7 +81,6 @@ export default {
         },
     },
     mounted() {
-        console.log(this.id)
         this.$store.dispatch('fetchCart', this.id)
     },
     methods: {
@@ -90,10 +89,8 @@ export default {
                 userId: booking.userId, 
                 id: booking.cartId 
             })
-            console.log(booking.cartId, booking.userId);
         },
         updateItem(booking) {
-            console.log(booking.cartId, booking.userId)
             this.$store.dispatch('updateCartItem', { 
                 userId: booking.userId,
                 id: booking.cartId,

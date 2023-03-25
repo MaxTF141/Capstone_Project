@@ -46,7 +46,6 @@ export default createStore({
       const res = await axios.post(`${api}users`, payload, { withCredentials: true });
       const { result, err} = await res.data;
       if(result){
-        // context.commit('setUserId', result.userId)
         context.commit('setUser', result);
         Cookies.set('userId', result.userId, {expires: 1, path: '/'})
       } else {
@@ -74,7 +73,6 @@ export default createStore({
     async fetchUsers(context) {
       const res = await axios.get(`${api}users`);
       const result = await res.data;
-      console.log( result.data);
       if (result) {
         context.commit('setUsers', await result.data);
       }
@@ -91,7 +89,6 @@ export default createStore({
     },
 // UPDATING ONE USER BY THEIR ID ACTION     
     async updateUser(context, commit,  {userId, user}) {
-      console.log(userId, user);
       const { res, message } = await axios.put(`${api}users/${userId}`, user);
       if (res) {
         context.commit('setUser', res.data);
@@ -106,12 +103,6 @@ export default createStore({
       context.commit('setUser', res.data)
     },
 // FETCH ALL THE RESTAURANTS 
-    // async fetchRestaurants(context) {
-    //   const res = await axios.get(`${api}items`);
-
-    //   console.log(await res.data)
-    //   context.commit('setRestaurants',await res.data)
-    // },
     async fetchRestaurants(context) {
       const res = await axios.get(`${api}items`);
     
@@ -129,13 +120,11 @@ export default createStore({
     },
 // UPDATE RESTAURANTS 
     async updateRestaurant(context, {restId, restaurant}){
-      console.log(restId, restaurant);
       const res = await axios.put(`${api}items/${restId}`, restaurant)
       context.commit('setRestaurant', res.data);
     },
 // DELETE A RESTAURANT 
     async deleteRestaurant(context, id ) {
-      console.log(id);
       const {res, message} = await axios.delete(`${api}items/${id}`)
       if(res) {
         context.commit('setRestaurant', await res.data);
@@ -146,13 +135,8 @@ export default createStore({
 
 // DISPLAY THE CART ITEMS 
     async fetchCart(context, id) {
-      console.log(id)
       const res = await axios.get(`${api}user/${id}/carts`);
       context.commit('setCart', await res.data);
-      // if(res) {
-      // }else {
-      //   context.commit('setMessage', message)
-      // }
     },
 // ADD AN ITEM TO THE CART     
     async addToCart(context, {id, payload}) {
@@ -186,7 +170,6 @@ export default createStore({
 
 // UPDATE AN ITEM BY ID
     async updateCartItem(context, dispatch,   { userId, id, changes }) {
-      console.log(userId, id, changes)
       const {res, message} = await axios.put(`${api}user/${userId}/cart/${id}`, changes)
       if(res) {
         context.commit('setCart', await res.data)

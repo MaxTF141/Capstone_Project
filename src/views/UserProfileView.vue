@@ -62,13 +62,11 @@ export default {
     props: ['id'],
     computed:{
         user(){
-            console.log(this.$store.state.user)
             return this.$store.state.user
         }
     },
     mutations() {
         this.$store.dispatch('fetchUser', this.id);
-        console.log(this.id);
     }
 }
 </script>

@@ -58,7 +58,6 @@ export default {
   mounted(){
     const userId = Cookies.get('userId')
     if(userId) {
-      console.log(userId);
       this.$store.dispatch('fetchUser', userId)
       }
     },
@@ -68,7 +67,6 @@ export default {
           const userCookie = Cookies.get('userId', { path: '/'})
           if(userCookie) {
             Cookies.remove('userId', { path: '/' })
-            console.log('Cookie has been removed')
             this.$router.push('/signin') 
           }
         })

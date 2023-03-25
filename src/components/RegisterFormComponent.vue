@@ -72,19 +72,17 @@ export default {
         async register() {
             await this.$store.dispatch('registerUser', this.reg)
             this.$store.commit('registerUser', this.userId)
-            console.log('Signed in');
+            alert('Account created');
             this.reg.firstName = '';
             this.reg.lastName = '';
             this.reg.cellphoneNumber = '';
             this.reg.userEmail = '';
             this.reg.userPass = '';
-            console.log(this.$store.state.users)
             return this.$store.state.users;
         }
     },
     computed: {
         idUsers() {
-            console.log(this.$store.state.userId);
             return this.$store.state.userId;
         }
     },

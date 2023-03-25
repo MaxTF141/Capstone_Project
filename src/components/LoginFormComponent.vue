@@ -62,12 +62,10 @@ export default {
         async signInCredentials() {
             if(this.signIn !== null){
                 await this.$store.dispatch('loginUser', this.signIn);
-                console.log('logged in');
                 this.signIn.userEmail = '',
                 this.signIn.userPass = ''
-            } else{
-                console.log('error')
             }
+
             this.$router.push('/restaurants');
         },
         toggleIcon(){

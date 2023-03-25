@@ -226,18 +226,9 @@ export default {
             return this.$store.state.users
         },
         restaurants() {
-            console.log(this.$store.state.restaurants)
             return this.$store.state.restaurants
         }
     },
-    // mounted() {
-    //     this.$store.dispatch('fetchUsers');
-    //     this.$store.dispatch('fetchRestaurants')
-    //     const mondayHours = this.$store.state.restaurants.hoursOfOperation.monday;
-    //     const mondayOpenTime = mondayHours.open;
-    //     console.log(mondayOpenTime);
-
-    // },
     mounted() {
         this.$store.dispatch('fetchUsers');
         this.$store.dispatch('fetchRestaurants')
@@ -258,13 +249,11 @@ export default {
             })
         },
         deleteUser(user) {
-            alert(`user with id: ${user.userId} successfully`)
             this.$store.dispatch('deleteUser', user.userId)
-            console.log(`user with id: ${user.userId} successfully`);
+            alert(`user with id: ${user.userId} successfully`);
         },
 
         updateRestaurant(res) {
-            console.log(res);
             this.$store.dispatch('updateRestaurant', {
                 restId: res.restId,
                 restaurant: {
@@ -284,9 +273,8 @@ export default {
         },
             
         restaurantDelete(res) {
-            alert(`restaurant with id: ${res.restId} successfully removed`)
             this.$store.dispatch('deleteRestaurant', res.restId)
-            console.log(`restaurant with id: ${res.restId} successfully removed`);
+            alert(`restaurant with id: ${res.restId} successfully removed`)
         },
     }
 }
