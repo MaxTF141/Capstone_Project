@@ -1,5 +1,7 @@
 <template>
-        <div class="spinner"></div>
+  <div id="spinner" class="wrapper d-flex justify-content-center align-items-center">
+    <div class="spinner"></div>
+  </div>
 </template>
 <script>
 
@@ -27,7 +29,7 @@ export default {
   content: '';
   display: block;
   position: absolute;
-  margin-top: -5em;
+  margin-top: 25rem;
   margin-left: -5em;
   width: 10em;
   height: 10em;

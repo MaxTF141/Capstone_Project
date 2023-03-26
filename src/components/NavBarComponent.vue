@@ -6,7 +6,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-          <img src="https://i.postimg.cc/tT2yK823/f8e275684c6d4eeb98cedbadbfd1677f.png" alt="logo" style="width: 5rem">
+          <img src="https://i.postimg.cc/8589Vjsv/My-project-1.png" alt="logo" style="width: 5rem">
           <ul class="d-flex gap-5">
             <router-link class="nav-link-left" to="/">Home</router-link>
             <router-link class="nav-link-left" to="/restaurants">Restaurants</router-link>

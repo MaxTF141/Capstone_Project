@@ -1,7 +1,7 @@
 <template>
     <div class="wrapper fixed-top">
         <div class="banner">
-            <h2 class="display-2">Products</h2>
+            <h2 class="display-2">Restaurants</h2>
         </div>
         <div class="searchBar d-flex justify-content-center">
                 <div class="container-input">
