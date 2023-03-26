@@ -29,7 +29,7 @@ export default {
   content: '';
   display: block;
   position: absolute;
-  margin-top: 25rem;
+  /* margin-top: 1rem; */
   margin-left: -5em;
   width: 10em;
   height: 10em;

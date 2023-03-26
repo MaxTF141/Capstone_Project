@@ -13,7 +13,7 @@
             </div>
             <hr class="mx-auto"/>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid min-vh-100">
         <div class="row">
             <div class="col-12 d-flex flex-column gap-5" v-if="filtering">
                 <div class="card d-flex flex-row mx-auto" style="width: 60rem;"  v-for="res in filtering" :key="res.userId">
