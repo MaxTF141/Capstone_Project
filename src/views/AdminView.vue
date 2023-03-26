@@ -185,24 +185,6 @@
                                                         <input type="text" class="form-control" v-model="res.rating" required>
                                                     </div>
                                                 </div>
-                                                <!-- <div class="mb-3 row">
-                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Hours of Operation</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" v-model="res.hoursOfOperation.Monday.open">
-                                                    </div>
-                                                 </div> -->
-                                                <!--<div class="mb-3 row">
-                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Hours of Operation</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" v-model="res.hoursOfOperation">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="text" class="col-sm-4 col-form-label text-dark">Hours of Operation</label>
-                                                    <div class="col-sm-8">
-                                                        <input type="text" class="form-control" v-model="res.hoursOfOperation">
-                                                    </div> -->
-                                                <!-- </div>  -->
                                                 <button type="submit">Save Changes</button>
                                             </form>
                                         </div>
