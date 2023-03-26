@@ -110,7 +110,6 @@ export default {
     }    
     button a {
         text-decoration: none ;
-        color: #1f2b21;
         font-family: TeX Gyre Bonum;
     }
 

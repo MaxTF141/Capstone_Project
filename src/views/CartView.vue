@@ -59,10 +59,10 @@
                     <div class="box-1">
                         <div class="checkout-total d-flex justify-content-between p-3">
                             <p>Your bookings total:</p>
-                            <p>R199.00</p>
+                            <p>{{ total }}</p>
                         </div>
                         <div class="checkout-amount p-3 d-flex justify-content-between">
-                            <p>R 199.00</p>
+                            <p>{{ total }}</p>
                              <button class="button2">Checkout</button> 
                         </div>
                     </div>
@@ -104,7 +104,10 @@ export default {
         },
         clearCart() {
             this.$store.dispatch('clearCart', this.id)
-        }
+        },
+        total() {
+            return this.cart.reduce((acc, booking) => acc + booking.bookingPrice, 0)
+    }
     }
 }
     

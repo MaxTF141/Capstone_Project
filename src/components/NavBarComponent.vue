@@ -11,7 +11,7 @@
             <router-link class="nav-link-left" to="/">Home</router-link>
             <router-link class="nav-link-left" to="/restaurants">Restaurants</router-link>
             <router-link class="nav-link-left" to="/about">About Us</router-link>
-            <router-link class="nav-link-left" to="/about">Contact Us</router-link>
+            <router-link class="nav-link-left" to="/contact">Contact Us</router-link>
           </ul>
           <ul class="d-flex justify-content-end">
             <div class="sign d-flex" v-if="!user">

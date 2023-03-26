@@ -4,12 +4,12 @@
         <div class="row justify-content-center gap-5">
             <div class="col-10">
                 <h2 class="heading">Profile</h2>
-                <div class="profile-info d-flex p-3">
+                <div class="profile-info d-flex p-3 gap-2">
                     <div class="profile-image">
                         <img :src="user.userProfile" alt="">
                     </div>
                     <div class="name-info">
-                        <h4>{{ user.firstName + ' ' + user.lastName }} </h4>
+                        <h4 class="p-0">{{ user.firstName + ' ' + user.lastName }} </h4>
                         <h4>{{user.userRole}}</h4>
                         <h4>{{ user.userEmail }}</h4>
                     </div>
@@ -20,7 +20,7 @@
                     <div class="wrapper d-flex justify-content-between pb-3">
                         <h2 class="heading pt-1">Personal Information</h2>
                     </div>
-                    <form>
+                    <form @submit.prevent="updateUser(user)">
                         <div class="row">
                             <div class="col-5 d-flex flex-column gap-4">
                                 <div class="name">
@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button>Save Changes</button>
+                        <button type="submit">Save Changes</button>
                     </form>
                 </div>
             </div>
@@ -65,10 +65,25 @@ export default {
             return this.$store.state.user
         }
     },
+    methods: {
+        updateUser(user) {
+            this.$store.dispatch('updateUser', { 
+                userId: user.userId,
+                user: {
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    userEmail: user.userEmail,
+                    cellphoneNumber: user.cellphoneNumber,
+                    userPass: user.userPass
+                }
+            })
+        }
+    },
     mutations() {
-        this.$store.dispatch('fetchUser', this.id);
+        this.$store.dispatch('fetchUser', this.id)
     }
 }
+
 </script>
 <style scoped>
     .container-fluid {
@@ -115,6 +130,9 @@ export default {
         border: none;
         border-radius: 0;
     }
-
+    h4 {
+    font-family: 'Roboto Slab', serif;
+    letter-spacing: 1px;
+  }
 
 </style>

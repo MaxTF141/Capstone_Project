@@ -48,6 +48,7 @@ export default createStore({
       if(result){
         context.commit('setUser', result);
         Cookies.set('userId', result.userId, {expires: 1, path: '/'})
+        alert( `Welcome back. have a nice browse`)
       } else {
         context.commit('setMessage', err);
       }
@@ -65,6 +66,7 @@ export default createStore({
       const { result, err } = await res.data;
         if(err) {
           context.commit('setMessage', err);
+          alert("You've been registered")
       } else {
         context.commit('setUser', result);
       }
@@ -88,11 +90,12 @@ export default createStore({
       }
     },
 // UPDATING ONE USER BY THEIR ID ACTION     
-    async updateUser(context, commit,  {userId, user}) {
+    async updateUser(context,  {commit, userId, user}) {
       const { res, message } = await axios.put(`${api}users/${userId}`, user);
       if (res) {
         context.commit('setUser', res.data);
-        commit('fetchCart')
+        commit('fetchUser')
+        alert('User has been updated')
       } else {
         context.commit('setMessage', message);
       }

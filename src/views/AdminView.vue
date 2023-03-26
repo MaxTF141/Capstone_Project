@@ -42,37 +42,37 @@
                                                 <div class="mb-3 row">
                                                     <label for="text" class="col-sm-4 col-form-label text-dark">First Name</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text"  class="form-control" v-model="user.firstName">
+                                                        <input type="text"  class="form-control" v-model="user.firstName" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="text" class="col-sm-4 col-form-label text-dark">Last Name</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="inputPassword" v-model="user.lastName">
+                                                        <input type="text" class="form-control" id="inputPassword" v-model="user.lastName" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="email" class="col-sm-4 col-form-label text-dark">Email</label>
                                                     <div class="col-sm-8">
-                                                        <input type="email" class="form-control" id="inputPassword" v-model="user.userEmail">
+                                                        <input type="email" class="form-control" id="inputPassword" v-model="user.userEmail" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="tel" class="col-sm-4 col-form-label text-dark">Cellphone Number</label>
                                                     <div class="col-sm-8">
-                                                        <input type="tel" class="form-control" id="inputPassword" maxlength="12" v-model="user.cellphoneNumber">
+                                                        <input type="tel" class="form-control" id="inputPassword" maxlength="12" v-model="user.cellphoneNumber" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="password" class="col-sm-4 col-form-label text-dark">Password</label>
                                                     <div class="col-sm-8">
-                                                        <input type="password" class="form-control" id="inputPassword" v-model="user.userPass">
+                                                        <input type="password" class="form-control" id="inputPassword" v-model="user.userPass" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="test" class="col-sm-4 col-form-label text-dark">User Role</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" id="inputPassword" v-model="user.userRole">
+                                                        <input type="text" class="form-control" id="inputPassword" v-model="user.userRole" required>
                                                     </div>
                                                 </div>
                                                 <button type="submit">Save Changes</button>
@@ -128,61 +128,61 @@
                                                 <div class="mb-3 row">
                                                     <label for="text" class="col-sm-4 col-form-label text-dark">Restaurant Name</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text"  class="form-control" v-model="res.restaurantName">
+                                                        <input type="text"  class="form-control" v-model="res.restaurantName" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="message" class="col-sm-4 col-form-label text-dark">Description</label>
                                                     <div class="col-sm-8">
-                                                        <input type="message" class="form-control message" v-model="res.restaurantDescription">
+                                                        <input type="message" class="form-control message" v-model="res.restaurantDescription" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="text" class="col-sm-4 col-form-label text-dark">Price</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control text" v-model="res.bookingPrice">
+                                                        <input type="text" class="form-control text" v-model="res.bookingPrice" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="text" class="col-sm-4 col-form-label text-dark">Location</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" v-model="res.location">
+                                                        <input type="text" class="form-control" v-model="res.location" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="tel" class="col-sm-4 col-form-label text-dark">Address</label>
                                                     <div class="col-sm-8">
-                                                        <input type="tel" class="form-control" v-model="res.address">
+                                                        <input type="tel" class="form-control" v-model="res.address" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="text" class="col-sm-4 col-form-label text-dark">Restaurant Main Image</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" v-model="res.imgUrl">
+                                                        <input type="text" class="form-control" v-model="res.imgUrl" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="text" class="col-sm-4 col-form-label text-dark">Gallery Image #1</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" v-model="res.galleryImgUrl">
+                                                        <input type="text" class="form-control" v-model="res.galleryImgUrl" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="text" class="col-sm-4 col-form-label text-dark">Gallery Image #2</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" v-model="res.galleryImgUrl2">
+                                                        <input type="text" class="form-control" v-model="res.galleryImgUrl2" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="text" class="col-sm-4 col-form-label text-dark">Gallery Image #3</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" v-model="res.galleryImgUrl3">
+                                                        <input type="text" class="form-control" v-model="res.galleryImgUrl3" required>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 row">
                                                     <label for="text" class="col-sm-4 col-form-label text-dark">Rating</label>
                                                     <div class="col-sm-8">
-                                                        <input type="text" class="form-control" v-model="res.rating">
+                                                        <input type="text" class="form-control" v-model="res.rating" required>
                                                     </div>
                                                 </div>
                                                 <!-- <div class="mb-3 row">
